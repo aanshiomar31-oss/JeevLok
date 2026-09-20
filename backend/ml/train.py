@@ -2,7 +2,7 @@
 ml/train.py
 =============
 
-PatientTriage.ai — Milestone 3: Model Training
+JeevLok AI — Milestone 3: Model Training
 ---------------------------------------------------
 Trains a high-acuity triage classifier on the same clinically-readable
 ED-stay data `triage_stays` is loaded from (`ml.preprocess.build_readable_frame`),
@@ -588,7 +588,7 @@ def _generate_shap_summary(model, X: pd.DataFrame, feature_names: list[str], ver
 
 if __name__ == "__main__":
     result = train()
-    print("\n=== PatientTriage.ai — Model Training Summary ===")
+    print("\n=== JeevLok AI — Model Training Summary ===")
     print(f"Selected model : {result['selected_model']}")
     print(f"Labeled stays  : {result['n_labeled']}  (prevalence high-acuity: {result['prevalence_high_acuity']:.1%})")
     print(f"ROC-AUC        : {result['selected_model_metrics']['roc_auc']}")

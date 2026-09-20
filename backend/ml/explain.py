@@ -2,7 +2,7 @@
 ml/explain.py
 ================
 
-PatientTriage.ai — Explainable AI + Evaluation Report
+JeevLok AI — Explainable AI + Evaluation Report
 -------------------------------------------------------------
 Generates the SHAP explainability artifacts and evaluation
 visualizations required alongside the trained ensemble, saved to
@@ -77,7 +77,7 @@ def generate_shap_report(artifact: ModelArtifact, X: pd.DataFrame, reports_dir) 
         shap.summary_plot(mean_abs_per_class, X, feature_names=artifact.feature_names, show=False, plot_size=None)
     else:
         shap.summary_plot(values, X, feature_names=artifact.feature_names, show=False, plot_size=None)
-    plt.title("PatientTriage.ai — SHAP Feature Impact Summary")
+    plt.title("JeevLok AI — SHAP Feature Impact Summary")
     plt.tight_layout()
     plt.savefig(reports_dir / "shap_summary.png", dpi=160)
     plt.close()
@@ -90,7 +90,7 @@ def generate_shap_report(artifact: ModelArtifact, X: pd.DataFrame, reports_dir) 
     vals = [r[1] for r in ranking][::-1]
     plt.barh(names, vals, color="#2563eb")
     plt.xlabel("Mean |SHAP value|")
-    plt.title("PatientTriage.ai — Global Feature Importance")
+    plt.title("JeevLok AI — Global Feature Importance")
     plt.tight_layout()
     plt.savefig(reports_dir / "feature_importance.png", dpi=160)
     plt.close()
@@ -116,7 +116,7 @@ def generate_shap_report(artifact: ModelArtifact, X: pd.DataFrame, reports_dir) 
             )
             plt.figure(figsize=(9, 7))
             shap.plots.waterfall(explanation, show=False, max_display=12)
-            plt.title(f"PatientTriage.ai — Example Explanation (Priority P{cls})")
+            plt.title(f"JeevLok AI — Example Explanation (Priority P{cls})")
             plt.tight_layout()
             plt.savefig(reports_dir / f"shap_waterfall_p{cls}.png", dpi=160)
             plt.close()
@@ -145,7 +145,7 @@ def generate_confidence_gauge(sample_confidence: float, reports_dir) -> None:
     ax.set_xlim(-1.1, 1.1)
     ax.set_ylim(-0.4, 1.1)
     ax.axis("off")
-    plt.title("PatientTriage.ai — Confidence Gauge (illustrative)")
+    plt.title("JeevLok AI — Confidence Gauge (illustrative)")
     plt.tight_layout()
     plt.savefig(reports_dir / "confidence_gauge.png", dpi=160)
     plt.close()
@@ -173,7 +173,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
     cm = confusion_matrix(y_true, oof_pred, labels=classes)
     fig, ax = plt.subplots(figsize=(6, 5.5))
     ConfusionMatrixDisplay(cm, display_labels=[f"P{c}" for c in classes]).plot(ax=ax, cmap="Blues", colorbar=False)
-    ax.set_title("PatientTriage.ai — Confusion Matrix (5-fold OOF)")
+    ax.set_title("JeevLok AI — Confusion Matrix (5-fold OOF)")
     plt.tight_layout()
     plt.savefig(reports_dir / "confusion_matrix.png", dpi=160)
     plt.close()
@@ -186,7 +186,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
             y_bin[:, i], oof_proba[:, i], name=f"P{cls}", ax=ax, color=PRIORITY_COLORS.get(cls, None),
         )
     ax.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5)
-    ax.set_title("PatientTriage.ai — ROC Curves (one-vs-rest, OOF)")
+    ax.set_title("JeevLok AI — ROC Curves (one-vs-rest, OOF)")
     plt.tight_layout()
     plt.savefig(reports_dir / "roc_curve.png", dpi=160)
     plt.close()
@@ -196,7 +196,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
         PrecisionRecallDisplay.from_predictions(
             y_bin[:, i], oof_proba[:, i], name=f"P{cls}", ax=ax, color=PRIORITY_COLORS.get(cls, None),
         )
-    ax.set_title("PatientTriage.ai — Precision-Recall Curves (one-vs-rest, OOF)")
+    ax.set_title("JeevLok AI — Precision-Recall Curves (one-vs-rest, OOF)")
     plt.tight_layout()
     plt.savefig(reports_dir / "precision_recall_curve.png", dpi=160)
     plt.close()
@@ -221,7 +221,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
     ax.plot([0, 1], [0, 1], "k--", lw=1, alpha=0.5, label="Perfectly calibrated")
     ax.set_xlabel("Mean predicted probability")
     ax.set_ylabel("Observed frequency")
-    ax.set_title("PatientTriage.ai — Calibration Curve (OOF)")
+    ax.set_title("JeevLok AI — Calibration Curve (OOF)")
     ax.legend(fontsize=9)
     plt.tight_layout()
     plt.savefig(reports_dir / "calibration_curve.png", dpi=160)
@@ -232,7 +232,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
     counts = y_true.value_counts().sort_index()
     ax.bar([f"P{c}" for c in counts.index], counts.values,
           color=[PRIORITY_COLORS.get(c, "#64748b") for c in counts.index])
-    ax.set_title("PatientTriage.ai — Class Distribution (Trained Classes)")
+    ax.set_title("JeevLok AI — Class Distribution (Trained Classes)")
     ax.set_ylabel("Count")
     plt.tight_layout()
     plt.savefig(reports_dir / "class_distribution.png", dpi=160)
@@ -261,7 +261,7 @@ def generate_evaluation_plots(artifact: ModelArtifact, X: pd.DataFrame, y_true: 
     ax.set_xlabel("Fold")
     ax.set_ylim(0, 1)
     ax.legend()
-    ax.set_title("PatientTriage.ai — Fold Performance Summary")
+    ax.set_title("JeevLok AI — Fold Performance Summary")
     plt.tight_layout()
     plt.savefig(reports_dir / "fold_performance.png", dpi=160)
     plt.close()
@@ -310,7 +310,7 @@ def run() -> dict:
 
 if __name__ == "__main__":
     result = run()
-    print("\n=== PatientTriage.ai — Explainability & Evaluation Report ===")
+    print("\n=== JeevLok AI — Explainability & Evaluation Report ===")
     print(f"Model version   : {result['version']}")
     print(f"Evaluated on    : {result['n_evaluated']} labeled stays")
     print(f"Calibration err : {result['evaluation']['mean_calibration_error']}")

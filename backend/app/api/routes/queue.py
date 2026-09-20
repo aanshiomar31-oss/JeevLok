@@ -2,7 +2,7 @@
 api/routes/queue.py
 =======================
 
-PatientTriage.ai — Live Queue
+JeevLok AI — Live Queue
 ----------------------------------
 GET /api/v1/queue
 

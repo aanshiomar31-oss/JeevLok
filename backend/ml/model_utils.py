@@ -2,7 +2,7 @@
 ml/model_utils.py
 ====================
 
-PatientTriage.ai — Shared Model Utilities
+JeevLok AI — Shared Model Utilities
 -----------------------------------------------
 `build_features()` is the SINGLE place a patient dict becomes a feature
 vector. `train_model.py` and `predict.py` both call it — nothing else in

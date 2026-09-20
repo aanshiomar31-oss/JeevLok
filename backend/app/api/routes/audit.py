@@ -2,7 +2,7 @@
 api/routes/audit.py
 =======================
 
-PatientTriage.ai — Audit Log
+JeevLok AI — Audit Log
 ----------------------------------
 GET /api/v1/audit
 

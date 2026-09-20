@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-// PatientTriage.ai — Triage Stay Table
+// JeevLok AI — Triage Stay Table
 //
 // Uses the acuity color palette already reserved in tailwind.config.js
 // (triage.critical/urgent/moderate/low/nonurgent) so acuity 1-5 reads

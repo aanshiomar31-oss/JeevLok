@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// PatientTriage.ai — API client
+// JeevLok AI — API client
 //
 // Base URL is relative ("/api/v1") so Vite's dev-server proxy (see
 // vite.config.js) forwards requests to FastAPI locally, and a reverse

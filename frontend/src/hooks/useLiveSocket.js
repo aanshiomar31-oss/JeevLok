@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// PatientTriage.ai — live event feed hook.
+// JeevLok AI — live event feed hook.
 //
 // Connects to ws://<host>/ws/live and dispatches incoming messages by
 // their `event` field. The backend has multiple independent

@@ -1,6 +1,6 @@
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
-// PatientTriage.ai — Acuity Distribution Chart
+// JeevLok AI — Acuity Distribution Chart
 //
 // Colors match the acuity badges in TriageStayTable.jsx and the palette
 // reserved in tailwind.config.js, so acuity reads identically wherever

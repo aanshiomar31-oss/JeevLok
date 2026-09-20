@@ -2,7 +2,7 @@
 ml/rule_engine.py
 ====================
 
-PatientTriage.ai — Rule-Based Safety Engine
+JeevLok AI — Rule-Based Safety Engine
 -------------------------------------------------
 Deterministic, clinician-reviewable red-flag detection. This module has
 no learned parameters and makes no probabilistic judgement — it is a

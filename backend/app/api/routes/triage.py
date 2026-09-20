@@ -2,7 +2,7 @@
 api/routes/triage.py
 =======================
 
-PatientTriage.ai — Triage Recommendation Endpoint
+JeevLok AI — Triage Recommendation Endpoint
 --------------------------------------------------------
 POST /api/v1/triage
 

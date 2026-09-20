@@ -2,7 +2,7 @@
 app/ml/model_registry.py
 ============================
 
-PatientTriage.ai — Model Registry (Inference Surface)
+JeevLok AI — Model Registry (Inference Surface)
 ------------------------------------------------------------
 Thin, app-facing wrapper around the artifact produced by
 `ml/train.py` (`reports/model.joblib`). This module is what the FastAPI

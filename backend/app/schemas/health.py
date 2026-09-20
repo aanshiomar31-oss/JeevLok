@@ -2,7 +2,7 @@
 schemas/health.py
 ===================
 
-PatientTriage.ai — Health Check Schemas
+JeevLok AI — Health Check Schemas
 ------------------------------------------
 Response models for the `/health` and `/` endpoints used by orchestration
 tooling (Docker healthchecks, uptime monitors, the frontend's connectivity
@@ -19,7 +19,7 @@ class HealthResponse(BaseModel):
 
     status: str = Field(..., examples=["ok"])
     environment: str = Field(..., examples=["development"])
-    project_name: str = Field(..., examples=["PatientTriage.ai"])
+    project_name: str = Field(..., examples=["JeevLok AI"])
     database_reachable: bool = Field(
         ..., description="Whether a trivial query against the configured database succeeded."
     )

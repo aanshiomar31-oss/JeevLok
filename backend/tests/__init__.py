@@ -1,1 +1,1 @@
-"""Test suite for the PatientTriage.ai backend."""
+"""Test suite for the JeevLok AI backend."""

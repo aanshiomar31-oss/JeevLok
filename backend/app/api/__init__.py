@@ -1,1 +1,1 @@
-"""api package — versioned REST routes for PatientTriage.ai."""
+"""api package — versioned REST routes for JeevLok AI."""

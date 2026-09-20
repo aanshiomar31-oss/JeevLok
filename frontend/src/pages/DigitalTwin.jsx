@@ -4,7 +4,7 @@ import { useSurge } from "../context/SurgeContext.jsx";
 import SurgeToggle from "../components/SurgeToggle.jsx";
 import PriorityBadge from "../components/PriorityBadge.jsx";
 
-// PatientTriage.ai — Digital Twin
+// JeevLok AI — Digital Twin
 //
 // Honesty note: this is a CLIENT-SIDE simulation. The real backend has
 // no bed-management, nurse-roster, or arrival-generation system to

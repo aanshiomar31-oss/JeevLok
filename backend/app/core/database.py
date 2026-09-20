@@ -2,7 +2,7 @@
 core/database.py
 ==================
 
-PatientTriage.ai — Database Engine & Session
+JeevLok AI — Database Engine & Session
 -----------------------------------------------
 SQLAlchemy engine/session setup for the SQLite-backed clinical audit and
 staging database. Alembic (see `backend/alembic/`) owns schema migrations

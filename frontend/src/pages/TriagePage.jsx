@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { submitTriage } from "../services/api.js";
 
-// PatientTriage.ai — Single Patient Triage
+// JeevLok AI — Single Patient Triage
 //
 // The form for the Hybrid Intelligence Layer built in this project:
 // rule engine -> stacking ensemble -> uncertainty -> SHAP explanation

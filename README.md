@@ -1,10 +1,10 @@
 # JeevLok AI: Intelligent Emergency Clinical Decision Support System
 
-### Next-Generation Multimodal AI featuring Clinical NLP, Voice Triage, GenAI RAG Copilot, and Counterfactual SHAP Explainability
+### Next-Generation Multimodal AI Platform featuring Clinical NLP, Speech-to-Triage, Explainable Stacking Ensembles, and RAG Clinical Copilot
 
 > **"The AI recommends. The clinician decides."**
 
-JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concept of *Jeev* (Life) and *Lok* (Realm/World)—preserving life through technology—it augments clinical nursing judgment with natural language processing, speech recognition, machine learning ensembles, and conversational retrieval-augmented generation (RAG)—ensuring transparent, audit-logged, and clinician-overridable recommendations.
+JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concepts of **Jeev** (Life) and **Lok** (Realm/Dimension)—preserving and safeguarding human life through clinical technology—JeevLok AI augments clinical nursing judgment with natural language processing, speech recognition, calibrated machine learning ensembles, and conversational retrieval-augmented generation (RAG). Every recommendation is explainable, reviewable, overridable, and permanently audit-logged.
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.6-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.3.1-20232A?logo=react&logoColor=61DAFB)](https://react.dev)
@@ -17,43 +17,58 @@ JeevLok AI is an advanced, production-grade Clinical Decision Support System (CD
 
 ---
 
-## Collaborative Heritage & Acknowledgement
+## Executive Overview
 
-> [!IMPORTANT]
-> **Project Heritage**:
-> This project was originally conceived and developed collaboratively by **Aanshi Omar** and **Harshita** under the name [`SheCodes_PatientTrivageAI`](https://github.com/harshita-0111/SheCodes_PatientTrivageAI).
->
-> **Independent Enhancement Notice**:
-> **This repository contains Aanshi Omar's independently designed and implemented architectural enhancements**, transforming the initial prototype into an interview-grade, production-ready healthcare AI system. Major original contributions include:
-> - **End-to-End Clinical NLP Pipeline**: NegEx-based negation detection, medical NER, and automated vitals parsing from free text.
-> - **Clinical Concept Normalization & ICD-10 Mapping**: Synonym mapping and semantic similarity across emergency presentations.
-> - **Voice-to-Triage**: Speech-to-text dictation with Whisper-compatible endpoints and real-time form population.
-> - **LLM Clinical Summary**: Decision-support synthesis highlighting Shock Index, MAP, and emergency protocols.
-> - **Intelligent Chat Assistant (Clinical Copilot)**: RAG architecture with clinical knowledge base and multi-turn memory.
-> - **Counterfactual "What-If" Simulator**: Dynamic physiological trajectory modeling and natural language SHAP narratives.
-> - **Multi-Tier Production Architecture**: Docker Compose orchestration, Pydantic v2 validation, and unit test suites.
+Emergency Departments operate under severe cognitive load, time pressure, and unpredictable patient surges. Traditional triage relies on subjective nurse evaluation, leading to variability in priority assignment during peak hours.
+
+JeevLok AI solves this by introducing a **multimodal, human-in-the-loop clinical intelligence platform**:
+- **Multimodal Intake**: Nurses can dictate symptoms via voice, type free-text clinical notes, or use standard structured inputs.
+- **Clinical NLP Engine**: Automatically parses free text, detects clinical negations (*"denies fever"*, *"no chest pain"*), extracts vital signs, and normalizes findings to ICD-10-CM codes.
+- **Hybrid Intelligence Layer**: Combines a deterministic Clinical Rule Engine (establishing safety floors) with a 4-model Stacking Ensemble (XGBoost, LightGBM, CatBoost, HistGradientBoosting) trained on MIMIC-IV-ED data.
+- **Explainable GenAI Summaries**: Produces high-signal clinical briefings with calculated physiological indices (Shock Index, MAP) and immediate protocol recommendations.
+- **RAG Clinical Copilot**: An interactive conversational assistant answering complex clinical queries with multi-turn memory.
+- **Counterfactual "What-If" Simulator**: Dynamic slider simulator allowing clinicians to observe how physiological changes alter patient risk.
 
 ---
 
-## Feature Comparison Matrix
+## Key Architectural Capabilities
 
-| Capability | Original Collaborative Version | JeevLok AI (Enhanced Version) |
-| :--- | :--- | :--- |
-| **Intake Modality** | Manual form inputs & checkboxes | **Multimodal**: Free-text Natural Language + Voice Dictation + Standard Form |
-| **Clinical NLP** | None | **Full Pipeline**: Text cleaning, medical abbreviation expansion, tokenization, lemmatization |
-| **Negation Detection** | None | **NegEx Clinical Algorithm**: Distinguishes affirmed from negated symptoms (*"denies chest pain"*) |
-| **Vitals Extraction** | Manual entry only | **Automated Regex Extraction**: Parses BP, HR, RR, SpO2, Temp, Pain, Age, Gender from notes |
-| **Concept Mapping** | Hardcoded fields | **ICD-10-CM & SNOMED Taxonomy**: Normalizes colloquial terms (*"heart attack feeling"* → R07.9) |
-| **Voice Dictation** | None | **Whisper-Compatible Speech-to-Text**: Real-time microphone capture & auto-filling |
-| **Clinical Summaries** | Basic rule output | **Explainable GenAI Synthesis**: Urgency drivers, Shock Index, MAP, protocols & safety disclaimer |
-| **Clinical Assistant** | None | **RAG Clinical Copilot**: Multi-turn conversation on ESI levels, formulas, and triage rationale |
-| **Explainable AI** | Static SHAP bar chart | **Interactive Counterfactual Simulator** ("What-If" sliders) + Plain-Language SHAP Narratives |
-| **Containerization** | Basic dev Dockerfile | **Multi-Service Docker Compose**: Live reload, healthchecks, and environment configuration |
-| **Automated Testing** | Baseline endpoint test | **Comprehensive Pytest Suite**: NLP pipeline, negation, summary generator, and RAG copilot |
+### 1. Clinical NLP & Medical Entity Recognition
+- **Abbreviation Expansion**: Expands 30+ emergency medical acronyms (`SOB` → shortness of breath, `CP` → chest pain, `LOC` → loss of consciousness, `HTN` → hypertension).
+- **NegEx Negation Detection**: Utilizes directional scope windows to ensure negated symptoms do not falsely inflate triage urgency.
+- **Regex Vitals Parser**: Extracts Blood Pressure (`120/80`), Heart Rate (`HR 115`), Respiratory Rate (`RR 24`), Temperature (`102.4 F`), SpO2 (`89%`), Pain (`9/10`), Age, and Gender from unstructured notes.
+- **Concept Normalization & ICD-10 Mapping**: Normalizes colloquial phrasing (*"heart attack feeling"*, *"crushing chest pain"*) to formal concepts (`Chest Pain`, ICD-10 `R07.9`).
+- **One-Click Form Auto-Fill**: Automatically populates all triage form fields from parsed notes.
+
+### 2. Voice-to-Triage Dictation
+- Integrated browser-side Web Speech API dictation and backend Whisper-compatible audio transcription endpoint (`POST /api/v1/voice/transcribe`).
+- Audio stream $\rightarrow$ Speech-to-Text $\rightarrow$ Clinical NLP Extraction $\rightarrow$ Auto-Filled Patient Form $\rightarrow$ Live Triage Recommendation.
+
+### 3. GenAI LLM Clinical Summaries
+- Translates model risk scores and vital sign patterns into concise clinical briefings.
+- Highlights physiological markers:
+  - **Shock Index ($SI = HR / SBP$)**: Identifies occult hypoperfusion ($\ge 0.90$ threshold).
+  - **Mean Arterial Pressure ($MAP = \frac{2 \cdot DBP + SBP}{3}$)**: Identifies hypoperfusion risks ($< 65\text{ mmHg}$).
+- Recommends actionable emergency protocols (STEMI 12-lead ECG, Stroke FAST alert, qSOFA Sepsis bundle).
+- Enforces the safety principle: *"AI recommends. Clinician decides."*
+
+### 4. RAG Clinical Copilot (Conversational Assistant)
+- Retrieval-Augmented Generation backed by an emergency medicine knowledge base.
+- Multi-turn conversation memory keyed by session ID.
+- Ingests live patient context to answer questions like:
+  - *"Why is shock index high for this patient?"*
+  - *"What does MAP mean?"*
+  - *"Explain this triage recommendation."*
+  - *"Show STEMI protocol checklist."*
+
+### 5. Interactive Counterfactual Simulator
+- What-If slider simulator allowing clinicians to adjust vital signs (SBP, HR, SpO2, RR) on the fly.
+- Displays real-time risk score deltas ($\Delta\text{Risk}$) and priority transitions ($P2 \rightarrow P3$).
+- Generates natural-language impact narratives and directional feature importance cards (escalating vs. stabilizing).
 
 ---
 
-## System Architecture
+## End-to-End System Architecture
 
 ```mermaid
 flowchart TD
@@ -65,7 +80,7 @@ flowchart TD
         A4 -->|Extracted Vitals & Findings| A6
     end
 
-    subgraph Processing ["2. Hybrid Intelligence & NLP Layer"]
+    subgraph Processing ["2. Clinical NLP & Feature Engine"]
         A4 --> B1[Text Normalization & Abbreviation Expansion]
         B1 --> B2[NegEx Negation Detection]
         B2 --> B3[Medical NER & Urgency Classifier]
@@ -100,9 +115,7 @@ flowchart TD
 
 ---
 
-## Clinical NLP Pipeline
-
-The Natural Language Processing engine allows triage nurses to dictate or type unstructured clinical narratives, automatically converting them into structured features for machine learning prediction.
+## Clinical NLP Pipeline Workflow
 
 ```mermaid
 flowchart LR
@@ -113,15 +126,9 @@ flowchart LR
     P4 --> Out["Structured TriageRequest\nAuto-filled form & Live AI Preview"]
 ```
 
-### Key NLP Features:
-1. **Clinical Abbreviation Expansion**: Resolves emergency acronyms (`SOB` → shortness of breath, `CP` → chest pain, `hx` → history, `LOC` → loss of consciousness).
-2. **NegEx Negation Detection**: Employs directional scope windows and pseudo-negation filters to ensure negated conditions (*"denies fever"*, *"no stroke signs"*) do not falsely elevate triage acuity.
-3. **Regex Vitals & Demographics Parser**: Automatically extracts blood pressure, pulse, respiratory rate, temperature, SpO2, pain score, age, and gender from conversational phrasing.
-4. **ICD-10-CM Mapping**: Standardizes colloquial terminology (*"heart attack feeling"*, *"tightness in chest"*) to formal clinical concepts and diagnostic codes.
-
 ---
 
-## Voice-to-Triage Workflow
+## Voice-to-Triage Sequence
 
 ```mermaid
 sequenceDiagram
@@ -145,14 +152,7 @@ sequenceDiagram
 
 ---
 
-## RAG Clinical Copilot & Decision Support
-
-The **Clinical Copilot** is a retrieval-augmented conversational assistant accessible throughout the ED dashboard. It assists clinicians with real-time interpretation of:
-- **Emergency Severity Index (ESI)**: Levels P1 through P5 criteria and pediatric/geriatric adjustments.
-- **Shock Index (SI)**: $SI = \frac{\text{Heart Rate}}{\text{Systolic BP}}$ ($\ge 0.90$ threshold for occult shock and hemorrhage).
-- **Mean Arterial Pressure (MAP)**: $MAP = \frac{2 \times \text{DBP} + \text{SBP}}{3}$ ($< 65\text{ mmHg}$ critical organ perfusion cutoff).
-- **Pulse Pressure (PP)**: $SBP - DBP$ (narrow $< 25\text{ mmHg}$ vs. wide $> 60\text{ mmHg}$).
-- **Emergency Protocols**: STEMI 12-lead ECG guidelines, FAST stroke criteria, and qSOFA sepsis bundles.
+## RAG Clinical Copilot Architecture
 
 ```mermaid
 flowchart TD
@@ -165,20 +165,11 @@ flowchart TD
 
 ---
 
-## Interactive Explainability & Counterfactual Simulator
-
-Beyond static SHAP summary plots, JeevLok AI provides:
-1. **Plain-Language SHAP Narratives**: Translates complex tree ensemble SHAP values into an intuitive paragraph explaining the physiological reasons for the assigned priority.
-2. **Counterfactual "What-If" Simulator**: Clinicians can adjust vital signs using interactive sliders (e.g., observing how increasing SBP from 88 to 120 mmHg reduces risk score from 82 to 45 and transitions priority from P2 to P3).
-3. **Feature Importance Cards**: Color-coded directional badges indicating whether each physiological factor is escalating or stabilizing patient urgency.
-
----
-
 ## API Documentation
 
 FastAPI provides interactive OpenAPI documentation at `/docs` and ReDoc at `/redoc`.
 
-### Core API Endpoints
+### Core Endpoints
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
@@ -350,8 +341,8 @@ pytest tests/test_nlp_pipeline.py tests/test_clinical_summary.py tests/test_chat
 
 ---
 
-## License & Attribution
+## Author & Acknowledgements
 
+- **Lead Engineer & Architect**: **Aanshi Omar**
+- **Special Thanks**: Harshita for foundational discussions during early hackathon ideation on emergency triage concepts.
 - **License**: MIT License.
-- **Original Collaborative Foundation**: Developed with **Harshita** ([SheCodes_PatientTrivageAI](https://github.com/harshita-0111/SheCodes_PatientTrivageAI)).
-- **Advanced Architecture & Implementation**: **Aanshi Omar**.

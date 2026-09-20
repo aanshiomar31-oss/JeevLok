@@ -2,7 +2,7 @@
 load_triage_stays.py
 =======================
 
-PatientTriage.ai — Load Triage Stays into the Database
+JeevLok AI — Load Triage Stays into the Database
 -----------------------------------------------------------
 Populates `triage_stays` (see `app/models/triage_stay.py`) from the raw
 MIMIC-IV-ED demo CSVs via `ml.preprocess.build_readable_frame()` — the

@@ -1,1 +1,1 @@
-"""websocket package — real-time connection infrastructure for PatientTriage.ai."""
+"""websocket package — real-time connection infrastructure for JeevLok AI."""

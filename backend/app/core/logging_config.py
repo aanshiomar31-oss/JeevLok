@@ -2,7 +2,7 @@
 core/logging_config.py
 ========================
 
-PatientTriage.ai — Logging Configuration
+JeevLok AI — Logging Configuration
 -------------------------------------------
 Centralized logging setup. Clinical decision-support systems must have
 traceable, timestamped logs — this is foundational for the audit trail

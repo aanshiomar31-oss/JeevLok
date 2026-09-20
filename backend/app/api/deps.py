@@ -2,7 +2,7 @@
 api/deps.py
 =============
 
-PatientTriage.ai — Shared API Dependencies
+JeevLok AI — Shared API Dependencies
 -----------------------------------------------
 Central place for FastAPI `Depends()` callables shared across route
 modules, so route files import from one place instead of reaching into

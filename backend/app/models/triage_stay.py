@@ -2,7 +2,7 @@
 models/triage_stay.py
 ========================
 
-PatientTriage.ai — Triage Stay Model
+JeevLok AI — Triage Stay Model
 ---------------------------------------
 Persists ED stays from the MIMIC-IV-ED (Demo) source data in a
 CLINICALLY READABLE form — raw units (temperature in the source scale,

@@ -2,7 +2,7 @@
 models/audit_log.py
 =====================
 
-PatientTriage.ai — Audit Log Model
+JeevLok AI — Audit Log Model
 -------------------------------------
 Foundational persistence model backing the platform's governing rule:
 

@@ -2,7 +2,7 @@
 ml package
 ============
 
-PatientTriage.ai — Hybrid Intelligence Layer
+JeevLok AI — Hybrid Intelligence Layer
 --------------------------------------------------
     Patient Data -> Rule Engine -> Ensemble ML -> Uncertainty -> SHAP -> Recommendation
 

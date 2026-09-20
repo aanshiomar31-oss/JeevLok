@@ -2,7 +2,7 @@
 app/main.py
 =============
 
-PatientTriage.ai — FastAPI Application Entrypoint
+JeevLok AI — FastAPI Application Entrypoint
 ------------------------------------------------------
 Creates and configures the FastAPI app: CORS, structured logging,
 database table creation (dev convenience — production schema changes go
@@ -123,7 +123,7 @@ async def websocket_live(websocket: WebSocket) -> None:
     await manager.connect(websocket)
     try:
         await manager.send_personal_message(
-            {"event": "connection_ack", "message": "Connected to PatientTriage.ai live feed."},
+            {"event": "connection_ack", "message": "Connected to JeevLok AI live feed."},
             websocket,
         )
         while True:

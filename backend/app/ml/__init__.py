@@ -2,7 +2,7 @@
 app/ml package
 =================
 
-PatientTriage.ai — App-Facing ML Surface
+JeevLok AI — App-Facing ML Surface
 ------------------------------------------
 Milestone 3 fills this package with `model_registry.py`: a thin,
 runtime-facing wrapper that loads the artifact trained by

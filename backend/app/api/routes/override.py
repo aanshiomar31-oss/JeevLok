@@ -2,7 +2,7 @@
 api/routes/override.py
 =========================
 
-PatientTriage.ai — Nurse Override
+JeevLok AI — Nurse Override
 ----------------------------------------
 POST /api/v1/override
 

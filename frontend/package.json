@@ -1,8 +1,8 @@
 {
-  "name": "patient-triage-ai-frontend",
+  "name": "jeevlok-ai-frontend",
   "private": true,
   "version": "0.1.0",
-  "description": "PatientTriage.ai — Clinical Decision Support System frontend. The AI recommends. The nurse decides.",
+  "description": "JeevLok AI — Intelligent Emergency Clinical Decision Support System.",
   "type": "module",
   "scripts": {
     "dev": "vite",

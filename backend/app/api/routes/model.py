@@ -2,7 +2,7 @@
 api/routes/model.py
 ======================
 
-PatientTriage.ai — Model Endpoints
+JeevLok AI — Model Endpoints
 ---------------------------------------
 Serves recommendations from the artifact trained by `ml/train.py`
 (loaded via `app.ml.model_registry`). Every endpoint here is read-only

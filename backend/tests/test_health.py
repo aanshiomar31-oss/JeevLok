@@ -16,7 +16,7 @@ def test_root_endpoint(test_client: TestClient) -> None:
     assert response.status_code == 200
 
     body = response.json()
-    assert body["message"].startswith("PatientTriage.ai")
+    assert body["message"].startswith("JeevLok AI")
     assert body["docs_url"] == "/docs"
     assert body["governing_rule"] == "The AI recommends. The nurse decides."
 
@@ -29,7 +29,7 @@ def test_health_endpoint(test_client: TestClient) -> None:
     body = response.json()
     assert body["status"] == "ok"
     assert body["database_reachable"] is True
-    assert body["project_name"] == "PatientTriage.ai"
+    assert body["project_name"] == "JeevLok AI"
 
 
 def test_docs_available(test_client: TestClient) -> None:

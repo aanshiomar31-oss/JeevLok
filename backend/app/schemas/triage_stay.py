@@ -2,7 +2,7 @@
 schemas/triage_stay.py
 =========================
 
-PatientTriage.ai — Triage Stay Schemas
+JeevLok AI — Triage Stay Schemas
 ------------------------------------------
 Response models for `GET /api/v1/triage-stays*`. Mirrors
 `app.models.triage_stay.TriageStay` field-for-field so the API contract

@@ -1,7 +1,7 @@
 """
 app/api/security.py
 ===================
-PatientTriage.ai — Security & Patient Data Protection endpoints.
+JeevLok AI — Security & Patient Data Protection endpoints.
 Provides mock enterprise security controls, active encryption checks,
 role mapping, and security audit timelines.
 """

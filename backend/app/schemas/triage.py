@@ -2,7 +2,7 @@
 schemas/triage.py
 ====================
 
-PatientTriage.ai — Triage Recommendation Schemas
+JeevLok AI — Triage Recommendation Schemas
 --------------------------------------------------------
 Request/response models for `POST /api/v1/triage`. The response model
 matches the Hybrid Intelligence Layer's output contract exactly (see

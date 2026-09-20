@@ -179,10 +179,10 @@ export default function Layout({ children }) {
 
         <footer className="border-t border-surface-border bg-white px-6 py-4 text-center text-[10px] text-surface-muted space-y-1">
           <p className="font-semibold text-slate-600">
-            JeevLok AI — Clinical NLP • Voice Triage • GenAI RAG Copilot • Counterfactual SHAP Explainability
+            JeevLok AI — Intelligent Clinical Decision Support System • NLP, Voice Triage & Multimodal GenAI
           </p>
           <p className="text-[9px] text-slate-400">
-            Originally developed collaboratively by Aanshi Omar & Harshita (<a href="https://github.com/harshita-0111/SheCodes_PatientTrivageAI" target="_blank" rel="noreferrer" className="underline hover:text-indigo-600">SheCodes_PatientTrivageAI</a>). Independently enhanced by Aanshi Omar.
+            Engineered by Aanshi Omar • "The AI recommends. The clinician decides."
           </p>
         </footer>
       </div>

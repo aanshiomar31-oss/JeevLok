@@ -1,5 +1,5 @@
 # ==============================================================================
-# PatientTriage.ai — Backend Dockerfile
+# JeevLok AI — Backend Dockerfile
 # ==============================================================================
 # python:3.11 (full image) already ships with gcc, build-essential, and
 # libgomp1 so we skip the apt-get layer that needs internet at build time.

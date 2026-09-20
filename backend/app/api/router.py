@@ -2,7 +2,7 @@
 api/router.py
 ===============
 
-PatientTriage.ai — API Router Aggregation
+JeevLok AI — API Router Aggregation
 ---------------------------------------------
 Single place that wires every route module into one `APIRouter`, which
 `app/main.py` mounts under `settings.API_V1_PREFIX`. Adding a new route

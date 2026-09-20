@@ -2,7 +2,7 @@
 schemas/model.py
 ===================
 
-PatientTriage.ai — Model Endpoint Schemas
+JeevLok AI — Model Endpoint Schemas
 -----------------------------------------------
 Response models for `GET/POST /api/v1/model/*`.
 """

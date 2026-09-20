@@ -2,7 +2,7 @@
 app/services/patient_registry.py
 ====================================
 
-PatientTriage.ai — Intake Persistence
+JeevLok AI — Intake Persistence
 --------------------------------------------
 Closes a real gap: `POST /triage` previously only logged a recommendation
 to the audit trail — it never created a row `GET /queue` could see. A

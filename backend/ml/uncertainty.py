@@ -2,7 +2,7 @@
 ml/uncertainty.py
 ====================
 
-PatientTriage.ai — Confidence System
+JeevLok AI — Confidence System
 -------------------------------------------
 Combines three independent signals into one confidence score. This is
 mandatory infrastructure, not a nice-to-have: the platform's design

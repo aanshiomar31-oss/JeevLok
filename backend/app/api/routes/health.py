@@ -2,7 +2,7 @@
 api/routes/health.py
 ======================
 
-PatientTriage.ai — Health Check Endpoint
+JeevLok AI — Health Check Endpoint
 --------------------------------------------
 Simple liveness/readiness endpoint. Used by Docker Compose healthchecks
 and the frontend's connectivity indicator. Deliberately contains no

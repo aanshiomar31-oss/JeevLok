@@ -2,7 +2,7 @@
 websocket/connection_manager.py
 ==================================
 
-PatientTriage.ai — WebSocket Connection Manager
+JeevLok AI — WebSocket Connection Manager
 ----------------------------------------------------
 Generic infrastructure for tracking connected WebSocket clients and
 broadcasting messages to them (e.g. a future "queue updated" or

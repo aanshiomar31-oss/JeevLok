@@ -2,7 +2,7 @@
 api/routes/triage_stays.py
 =============================
 
-PatientTriage.ai — Triage Stay Endpoints
+JeevLok AI — Triage Stay Endpoints
 ----------------------------------------------
 Read-only access to `triage_stays` (see `app/models/triage_stay.py`),
 the clinically readable ED-stay table loaded from the MIMIC-IV-ED demo

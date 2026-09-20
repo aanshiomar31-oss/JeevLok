@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-// PatientTriage.ai — Vite configuration
+// JeevLok AI — Vite configuration
 // VITE_API_HOST lets Docker inject the service name "backend" so containers
 // can reach each other. Falls back to "localhost" for plain `npm run dev`.
 const apiHost = process.env.VITE_API_HOST || "localhost";

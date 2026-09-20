@@ -72,7 +72,7 @@ export default function AuditLogs() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `patienttriage_audit_${new Date().toISOString().slice(0, 19)}.csv`;
+    a.download = `jeevlok_audit_${new Date().toISOString().slice(0, 19)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }

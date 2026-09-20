@@ -2,7 +2,7 @@
 ml/preprocess.py
 ==================
 
-PatientTriage.ai — Clinical Preprocessing Pipeline
+JeevLok AI — Clinical Preprocessing Pipeline
 ------------------------------------------------------
 Orchestrates the full data engineering flow:
 
@@ -592,12 +592,12 @@ def generate_data_quality_report(df: pd.DataFrame, output_path: Path) -> None:
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>PatientTriage.ai — Data Quality Report</title>
+<title>JeevLok AI — Data Quality Report</title>
 {style}
 </head>
 <body>
 <div class="container">
-    <h1>PatientTriage.ai — Data Quality Report</h1>
+    <h1>JeevLok AI — Data Quality Report</h1>
     <p class="subtitle">Generated {generated_at} · {len(df)} rows · {len(df.columns)} columns</p>
     <div class="banner">The AI recommends. The nurse decides. This report describes the
         merged edstays + triage dataset prior to model training.</div>
@@ -627,7 +627,7 @@ def generate_data_quality_report(df: pd.DataFrame, output_path: Path) -> None:
         {_arrival_hour_histogram_html(df)}
     </section>
 
-    <footer>PatientTriage.ai — Milestone 2 data pipeline · backend/ml/preprocess.py</footer>
+    <footer>JeevLok AI — Milestone 2 data pipeline · backend/ml/preprocess.py</footer>
 </div>
 </body>
 </html>
@@ -713,7 +713,7 @@ def run_preprocessing(
     report_path: Optional[str | Path] = None,
 ) -> pd.DataFrame:
     """
-    Run the full PatientTriage.ai preprocessing pipeline end-to-end.
+    Run the full JeevLok AI preprocessing pipeline end-to-end.
 
     Steps
     -----
@@ -758,7 +758,7 @@ def run_preprocessing(
     output_csv_path = Path(output_csv_path) if output_csv_path is not None else settings.DATA_DIR / "processed_triage.csv"
     report_path = Path(report_path) if report_path is not None else settings.REPORTS_DIR / "data_quality_report.html"
 
-    logger.info("=== PatientTriage.ai clinical data pipeline starting ===")
+    logger.info("=== JeevLok AI clinical data pipeline starting ===")
     tables, report = load_all_tables(data_dir)
 
     if "edstays" not in tables or "triage" not in tables:
@@ -794,7 +794,7 @@ def run_preprocessing(
     final_df.to_csv(output_csv_path, index=False)
     logger.info("Saved processed dataset to %s (shape=%s).", output_csv_path.resolve(), final_df.shape)
 
-    logger.info("=== PatientTriage.ai clinical data pipeline complete ===")
+    logger.info("=== JeevLok AI clinical data pipeline complete ===")
     return final_df
 
 

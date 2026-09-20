@@ -2,7 +2,7 @@
 ml/data_loader.py
 ===================
 
-PatientTriage.ai — Clinical Data Loader
+JeevLok AI — Clinical Data Loader
 ------------------------------------------
 Loads and validates the raw MIMIC-IV-ED (Demo) source tables that the
 rest of the data pipeline (`features.py`, `preprocess.py`) builds on.
@@ -280,7 +280,7 @@ def load_single_table(
 
 def load_all_tables(data_dir: Optional[str | Path] = None) -> tuple[Dict[str, pd.DataFrame], LoadReport]:
     """
-    Load all MIMIC-IV-ED demo tables required by PatientTriage.ai.
+    Load all MIMIC-IV-ED demo tables required by JeevLok AI.
 
     Parameters
     ----------
@@ -341,7 +341,7 @@ def load_all_tables(data_dir: Optional[str | Path] = None) -> tuple[Dict[str, pd
 if __name__ == "__main__":
     tables_loaded, load_report = load_all_tables()
 
-    print("\n=== PatientTriage.ai — Data Loader Smoke Test ===")
+    print("\n=== JeevLok AI — Data Loader Smoke Test ===")
     for name, frame in tables_loaded.items():
         print(f"  {name:<12} shape={frame.shape}")
 

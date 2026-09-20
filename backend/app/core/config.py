@@ -2,7 +2,7 @@
 core/config.py
 ===============
 
-PatientTriage.ai — Application Settings
+JeevLok AI — Application Settings
 -----------------------------------------
 Single source of truth for configuration. Values are read from the
 environment (and a local `.env` file, see `.env.example`) via
@@ -20,7 +20,7 @@ from typing import List
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-# Project root = PatientTriageAI/backend/
+# Project root = JeevLokAI/backend/
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
 
 

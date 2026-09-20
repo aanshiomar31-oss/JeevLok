@@ -2,7 +2,7 @@
 ml/features.py
 ================
 
-PatientTriage.ai — Clinical Feature Engineering
+JeevLok AI — Clinical Feature Engineering
 ------------------------------------------------
 Reusable, well-documented feature functions used by the ED triage
 decision-support pipeline. Each function is pure (no side effects, no

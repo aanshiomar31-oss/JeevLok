@@ -2,7 +2,7 @@
 app/services/cps.py
 ======================
 
-PatientTriage.ai — Clinical Priority Score
+JeevLok AI — Clinical Priority Score
 ------------------------------------------------
     CPS = 0.45 * ml_risk + 0.25 * rule_score + 0.15 * wait_score
           + 0.10 * age_vulnerability - 0.05 * uncertainty

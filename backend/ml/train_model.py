@@ -2,7 +2,7 @@
 ml/train_model.py
 ====================
 
-PatientTriage.ai — Ensemble Training
+JeevLok AI — Ensemble Training
 ------------------------------------------
 Trains a STACKED ensemble (XGBoost + LightGBM + CatBoost +
 HistGradientBoosting base learners, logistic-regression meta-learner) to
@@ -270,7 +270,7 @@ def train(verbose: bool = True) -> dict:
 
 if __name__ == "__main__":
     result = train()
-    print("\n=== PatientTriage.ai — Ensemble Training Summary ===")
+    print("\n=== JeevLok AI — Ensemble Training Summary ===")
     print(f"Version        : {result['version']}")
     print(f"Classes trained: {result['classes_trained']}  (n={result['n_labeled']})")
     m = result["oof_metrics"]

@@ -35,7 +35,7 @@ export default function DeploymentMode() {
       <div className="flex flex-wrap justify-between items-center gap-3 border-b border-surface-border pb-3">
         <div>
           <h3 className="label">Federated Deployment Architectures</h3>
-          <p className="text-xs text-surface-muted mt-1">Scale PatientTriage.ai across single nodes or regional clouds.</p>
+          <p className="text-xs text-surface-muted mt-1">Scale JeevLok AI across single nodes or regional clouds.</p>
         </div>
 
         {/* Segmented control selector */}

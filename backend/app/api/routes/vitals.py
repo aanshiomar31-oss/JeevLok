@@ -2,7 +2,7 @@
 api/routes/vitals.py
 =======================
 
-PatientTriage.ai — Vitals Update
+JeevLok AI — Vitals Update
 ------------------------------------
 POST /api/v1/vitals/update
 

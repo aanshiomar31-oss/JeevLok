@@ -2,7 +2,7 @@
 app/services/monitor.py
 ===========================
 
-PatientTriage.ai — Waiting Room Monitor
+JeevLok AI — Waiting Room Monitor
 ------------------------------------------------
 A background asyncio task, started from `app.main`'s lifespan, that
 periodically checks every waiting patient for:

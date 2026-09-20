@@ -2,7 +2,7 @@
 alembic/env.py
 ================
 
-PatientTriage.ai — Alembic Migration Environment
+JeevLok AI — Alembic Migration Environment
 ------------------------------------------------------
 Wires Alembic to the application's own `Settings.DATABASE_URL` and
 `Base.metadata`, so migrations always target the same database the

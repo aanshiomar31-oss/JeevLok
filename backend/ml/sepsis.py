@@ -2,7 +2,7 @@
 ml/sepsis.py
 ==============
 
-PatientTriage.ai — Sepsis Early Warning Scorer
+JeevLok AI — Sepsis Early Warning Scorer
 --------------------------------------------------
 Computes qSOFA (Quick Sequential Organ Failure Assessment) and SIRS
 criteria from patient vitals. These are never used to *set* a priority

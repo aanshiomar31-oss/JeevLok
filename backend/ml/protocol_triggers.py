@@ -2,7 +2,7 @@
 ml/protocol_triggers.py
 =========================
 
-PatientTriage.ai — Time-Critical Protocol Detector
+JeevLok AI — Time-Critical Protocol Detector
 -----------------------------------------------------
 Detects patterns in the triage request that warrant immediate activation
 of a time-sensitive clinical protocol. These are purely rule-based —

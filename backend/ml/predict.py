@@ -2,7 +2,7 @@
 ml/predict.py
 ================
 
-PatientTriage.ai — Prediction Interface
+JeevLok AI — Prediction Interface
 ------------------------------------------
 The single public entry point for scoring a patient:
 
