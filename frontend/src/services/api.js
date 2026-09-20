@@ -144,7 +144,7 @@ export async function fetchAudit({ patientId, eventType, limit = 100 } = {}) {
 }
 
 // =====================================================================
-// ClinicalPulse AI — Enhanced NLP, GenAI, Voice & Explainability APIs
+// JeevLok AI — Enhanced NLP, GenAI, Voice & Explainability APIs
 // =====================================================================
 
 /** Parse free-text clinical symptoms into structured vitals, findings, and auto-fill payload */

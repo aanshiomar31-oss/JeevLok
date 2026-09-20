@@ -1,5 +1,5 @@
 # ==============================================================================
-# ClinicalPulse AI — Docker Compose Multi-Service Orchestration
+# JeevLok AI — Docker Compose Multi-Service Orchestration
 # ==============================================================================
 # Brings up the full stack: FastAPI backend (NLP + GenAI) + React frontend.
 #
@@ -15,7 +15,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: clinicalpulse_backend
+    container_name: jeevlok_backend
     ports:
       - "8000:8000"
     volumes:
@@ -28,7 +28,7 @@ services:
       - ./backend/data:/app/data
       - ./backend/reports:/app/reports
     environment:
-      - PROJECT_NAME=ClinicalPulse AI
+      - PROJECT_NAME=JeevLok AI
       - ENVIRONMENT=development
       - DEBUG=true
       - DATABASE_URL=sqlite:///./data/patient_triage.db
@@ -49,7 +49,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    container_name: clinicalpulse_frontend
+    container_name: jeevlok_frontend
     ports:
       - "5173:5173"
     volumes:
@@ -68,5 +68,5 @@ services:
 
 networks:
   default:
-    name: clinicalpulse_network
+    name: jeevlok_network
 

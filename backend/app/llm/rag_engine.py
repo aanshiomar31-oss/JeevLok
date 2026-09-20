@@ -67,7 +67,7 @@ class ClinicalRAGEngine:
         """
         # Retrieve relevant clinical documents
         docs = self.retrieve_relevant_docs(query)
-        sources = [d["title"] for d in docs] if docs else ["ClinicalPulse AI Reference Standards"]
+        sources = [d["title"] for d in docs] if docs else ["JeevLok AI Reference Standards"]
 
         # Track conversation history in session store
         if session_id not in SESSION_MEMORY:
@@ -174,7 +174,7 @@ class ClinicalRAGEngine:
 
         # Fallback helpful response
         return (
-            "I am the **ClinicalPulse AI Copilot**. I can help you interpret:\n"
+            "I am the **JeevLok AI Copilot**. I can help you interpret:\n"
             "• Emergency Severity Index (P1–P5) triage criteria\n"
             "• Shock Index (SI = HR / SBP) and Mean Arterial Pressure (MAP) thresholds\n"
             "• Specific patient triage recommendations and SHAP feature drivers\n"

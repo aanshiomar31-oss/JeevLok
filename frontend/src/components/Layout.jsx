@@ -52,7 +52,7 @@ export default function Layout({ children }) {
         <div className="flex h-16 items-center justify-between px-4 border-b border-surface-border">
           <div className="flex items-center gap-3 overflow-hidden">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-sm font-bold text-white shadow-sm">
-              CP
+              JL
             </div>
             {isExpanded && (
               <motion.div
@@ -61,7 +61,7 @@ export default function Layout({ children }) {
                 exit={{ opacity: 0 }}
                 className="whitespace-nowrap"
               >
-                <h1 className="text-sm font-bold leading-tight text-surface-ink">ClinicalPulse AI</h1>
+                <h1 className="text-sm font-bold leading-tight text-surface-ink">JeevLok AI</h1>
                 <p className="text-[10px] leading-tight text-surface-muted">Intelligent Triage & GenAI</p>
               </motion.div>
             )}
@@ -179,7 +179,7 @@ export default function Layout({ children }) {
 
         <footer className="border-t border-surface-border bg-white px-6 py-4 text-center text-[10px] text-surface-muted space-y-1">
           <p className="font-semibold text-slate-600">
-            ClinicalPulse AI — Clinical NLP • Voice Triage • GenAI RAG Copilot • Counterfactual SHAP Explainability
+            JeevLok AI — Clinical NLP • Voice Triage • GenAI RAG Copilot • Counterfactual SHAP Explainability
           </p>
           <p className="text-[9px] text-slate-400">
             Originally developed collaboratively by Aanshi Omar & Harshita (<a href="https://github.com/harshita-0111/SheCodes_PatientTrivageAI" target="_blank" rel="noreferrer" className="underline hover:text-indigo-600">SheCodes_PatientTrivageAI</a>). Independently enhanced by Aanshi Omar.

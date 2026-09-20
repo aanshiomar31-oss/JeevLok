@@ -1,10 +1,10 @@
-# ClinicalPulse AI: Intelligent Emergency Clinical Decision Support System
+# JeevLok AI: Intelligent Emergency Clinical Decision Support System
 
 ### Next-Generation Multimodal AI featuring Clinical NLP, Voice Triage, GenAI RAG Copilot, and Counterfactual SHAP Explainability
 
 > **"The AI recommends. The clinician decides."**
 
-ClinicalPulse AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. It augments clinical nursing judgment with natural language processing, speech recognition, machine learning ensembles, and conversational retrieval-augmented generation (RAG)—ensuring transparent, audit-logged, and clinician-overridable recommendations.
+JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concept of *Jeev* (Life) and *Lok* (Realm/World)—preserving life through technology—it augments clinical nursing judgment with natural language processing, speech recognition, machine learning ensembles, and conversational retrieval-augmented generation (RAG)—ensuring transparent, audit-logged, and clinician-overridable recommendations.
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.6-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.3.1-20232A?logo=react&logoColor=61DAFB)](https://react.dev)
@@ -37,7 +37,7 @@ ClinicalPulse AI is an advanced, production-grade Clinical Decision Support Syst
 
 ## Feature Comparison Matrix
 
-| Capability | Original Collaborative Version | ClinicalPulse AI (Enhanced Version) |
+| Capability | Original Collaborative Version | JeevLok AI (Enhanced Version) |
 | :--- | :--- | :--- |
 | **Intake Modality** | Manual form inputs & checkboxes | **Multimodal**: Free-text Natural Language + Voice Dictation + Standard Form |
 | **Clinical NLP** | None | **Full Pipeline**: Text cleaning, medical abbreviation expansion, tokenization, lemmatization |
@@ -167,7 +167,7 @@ flowchart TD
 
 ## Interactive Explainability & Counterfactual Simulator
 
-Beyond static SHAP summary plots, ClinicalPulse AI provides:
+Beyond static SHAP summary plots, JeevLok AI provides:
 1. **Plain-Language SHAP Narratives**: Translates complex tree ensemble SHAP values into an intuitive paragraph explaining the physiological reasons for the assigned priority.
 2. **Counterfactual "What-If" Simulator**: Clinicians can adjust vital signs using interactive sliders (e.g., observing how increasing SBP from 88 to 120 mmHg reduces risk score from 82 to 45 and transitions priority from P2 to P3).
 3. **Feature Importance Cards**: Color-coded directional badges indicating whether each physiological factor is escalating or stabilizing patient urgency.
@@ -200,7 +200,7 @@ FastAPI provides interactive OpenAPI documentation at `/docs` and ReDoc at `/red
 ## Project Structure
 
 ```
-clinicalpulse-ai/
+JeevLok/
 ├── backend/
 │   ├── alembic/                       # Database migration versions
 │   ├── app/
@@ -266,8 +266,8 @@ clinicalpulse-ai/
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/<your-username>/clinicalpulse-ai.git
-cd clinicalpulse-ai
+git clone https://github.com/aanshiomar31-oss/JeevLok.git
+cd JeevLok
 
 # 2. Build and launch all services
 docker compose up --build

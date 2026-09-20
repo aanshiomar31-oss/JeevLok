@@ -15,8 +15,8 @@ export default function ClinicalCopilot({ patientContext = null }) {
     {
       role: "assistant",
       content:
-        "Hello! I am your **ClinicalPulse AI Copilot**.\n\nI can assist with interpreting Emergency Severity Index (ESI) criteria, calculating physiological indices (Shock Index, MAP), or reviewing emergency protocols.\n\nHow can I help you today?",
-      sources: ["ClinicalPulse AI Reference Standards"],
+        "Hello! I am your **JeevLok AI Copilot**.\n\nI can assist with interpreting Emergency Severity Index (ESI) criteria, calculating physiological indices (Shock Index, MAP), or reviewing emergency protocols.\n\nHow can I help you today?",
+      sources: ["JeevLok AI Reference Standards"],
       disclaimer: "AI recommends. Clinician decides.",
     },
   ]);

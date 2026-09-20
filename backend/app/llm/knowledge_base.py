@@ -105,7 +105,7 @@ CLINICAL_KNOWLEDGE_DOCUMENTS = [
         "title": "MIMIC-IV-ED Dataset and Machine Learning Baseline",
         "keywords": ["mimic", "dataset", "physionet", "mit", "training", "ensemble"],
         "content": (
-            "The ClinicalPulse AI models are trained on the MIMIC-IV-ED database from Beth Israel Deaconess Medical Center, "
+            "The JeevLok AI models are trained on the MIMIC-IV-ED database from Beth Israel Deaconess Medical Center, "
             "published through MIT PhysioNet. The model architecture combines a deterministic Clinical Rule Engine "
             "with a calibrated Gradient Boosting Ensemble (XGBoost, LightGBM, CatBoost, HistGradientBoosting) to produce "
             "both risk scores and SHAP explainability values for emergency clinicians."

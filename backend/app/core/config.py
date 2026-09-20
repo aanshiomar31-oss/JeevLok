@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     )
 
     # --- General -----------------------------------------------------
-    PROJECT_NAME: str = "ClinicalPulse AI"
+    PROJECT_NAME: str = "JeevLok AI"
     ENVIRONMENT: str = "development"  # development | staging | production
     API_V1_PREFIX: str = "/api/v1"
     DEBUG: bool = True
