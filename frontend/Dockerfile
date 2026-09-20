@@ -1,5 +1,5 @@
 # ==============================================================================
-# PatientTriage.ai — Frontend Dockerfile
+# JeevLok AI — Frontend Dockerfile
 # ==============================================================================
 # Development-oriented image: runs the Vite dev server with hot module
 # reload, matching how the backend Dockerfile runs uvicorn directly rather

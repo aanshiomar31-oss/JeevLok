@@ -16,8 +16,8 @@ from __future__ import annotations
 
 from functools import lru_cache
 from pathlib import Path
-from typing import List
-
+from typing import Any, List
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 # Project root = JeevLokAI/backend/
@@ -52,7 +52,6 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str | None = None
     LLM_PROVIDER: str = "local"  # local | openai | gemini
 
-
     # --- Security ------------------------------------------------------
     SECRET_KEY: str = "CHANGE_ME_INSECURE_DEV_ONLY_SECRET_KEY"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
@@ -62,11 +61,34 @@ class Settings(BaseSettings):
     # URL etc. in production via DATABASE_URL.
     DATABASE_URL: str = f"sqlite:///{BACKEND_ROOT / 'data' / 'patient_triage.db'}"
 
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def fix_postgres_url(cls, v: Any) -> Any:
+        if isinstance(v, str) and v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql://", 1)
+        return v
+
     # --- CORS ------------------------------------------------------------
     CORS_ORIGINS: List[str] = [
         "http://localhost:5173",
         "http://127.0.0.1:5173",
     ]
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Any) -> list[str]:
+        if isinstance(v, str):
+            if v.startswith("[") and v.endswith("]"):
+                import json
+                try:
+                    return json.loads(v)
+                except Exception:
+                    pass
+            return [i.strip() for i in v.split(",") if i.strip()]
+        elif isinstance(v, list):
+            return v
+        return ["*"]
+
 
     # --- Data paths ------------------------------------------------------
     DATA_DIR: Path = BACKEND_ROOT / "data"

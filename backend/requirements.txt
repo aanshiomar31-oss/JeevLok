@@ -1,8 +1,8 @@
 # ==============================================================================
-# PatientTriage.ai — Backend Dependencies
+# JeevLok AI — Backend Dependencies
 # ==============================================================================
 # Pinned to specific versions for reproducible builds across dev machines,
-# CI, and Docker. Bump deliberately, not via a bare `pip install -U`.
+# CI, Render/Railway, and Docker.
 #
 # Install with:
 #   pip install -r requirements.txt
@@ -38,9 +38,8 @@ optuna==4.1.0
 mlflow==2.19.0
 
 # --- Clinical NLP, GenAI & RAG -------------------------------------------------
-spacy>=3.7.0
-sentence-transformers>=3.0.0
-langchain>=0.2.0
+# Built with lightweight TF-IDF n-gram clinical taxonomy & scikit-learn.
+# Optional LLM integrations:
 openai>=1.30.0
 
 # --- Testing --------------------------------------------------------------------

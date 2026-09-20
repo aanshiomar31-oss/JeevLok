@@ -12,9 +12,14 @@ import axios from "axios";
 // on the backend (no /ws/live), so useLiveQueue() below POLLS /queue on
 // an interval instead of opening a socket. This is a deliberate, stated
 // substitution, not a placeholder pretending to be real-time.
-const apiBase = import.meta.env.VITE_API_URL || "";
+const rawBase = import.meta.env.VITE_API_URL || "";
+let apiBase = rawBase.replace(/\/+$/, "");
+if (apiBase && !apiBase.startsWith("http://") && !apiBase.startsWith("https://")) {
+  apiBase = `https://${apiBase}`;
+}
+
 export const apiClient = axios.create({
-  baseURL: `${apiBase}/api/v1`,
+  baseURL: apiBase ? `${apiBase}/api/v1` : "/api/v1",
   timeout: 15000,
   headers: { "Content-Type": "application/json" },
 });
