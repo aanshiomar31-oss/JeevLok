@@ -229,18 +229,29 @@ def predict(patient: dict) -> dict:
     artifact = _get_artifact()
     features = build_features(patient)
 
+    # Data-sufficiency guard — check if 6 or more vitals are unrecorded
+    VITAL_FIELDS = ("o2sat", "heartrate", "resprate", "sbp", "dbp", "temperature_c", "pain")
+    n_missing = sum(1 for f in VITAL_FIELDS if features.get(f, 0.0) == 0.0
+                    and not any(patient.get(k) is not None for k in _VITAL_SOURCE_KEYS.get(f, ())))
+    insufficient_data = (not rule_result.escalated) and n_missing >= 6
+
     if artifact is None:
         # No trained model — the rule engine alone still produces a safe,
         # explainable recommendation rather than a 503. This is the
         # platform's fail-safe-default principle applied to the ML layer
         # itself: absence of a model must escalate caution, not block care.
         logger.warning("No trained ensemble available — falling back to rule-engine-only priority.")
-        priority = rule_result.priority_floor if rule_result.escalated else 4
+        priority = rule_result.priority_floor if rule_result.escalated else (3 if insufficient_data else 4)
+        uncertainty_reason = (
+            f"{n_missing} of 7 vital signs not recorded — assessment requires more clinical data"
+            if insufficient_data
+            else "No trained ML model available — rule-engine-only assessment"
+        )
         return {
             "priority": PRIORITY_LABELS[priority],
-            "risk_score": 80 if rule_result.escalated else 30,
-            "confidence": 0.4 if rule_result.escalated else 0.3,
-            "uncertainty_reason": "No trained ML model available — rule-engine-only assessment",
+            "risk_score": 80 if rule_result.escalated else (35 if insufficient_data else 30),
+            "confidence": 0.4 if rule_result.escalated else (0.25 if insufficient_data else 0.3),
+            "uncertainty_reason": uncertainty_reason,
             "top_features": [h.reason for h in rule_result.hits[:3]] or ["No trained model loaded"],
             "escalated": rule_result.escalated,
         }
@@ -250,19 +261,6 @@ def predict(patient: dict) -> dict:
     class_probabilities = {c: float(p) for c, p in zip(artifact.classes, proba)}
     predicted_class_index = int(np.argmax(proba))
     ml_predicted_class = int(artifact.classes[predicted_class_index])
-
-    # Data-sufficiency guard — the ensemble uses vitals_missing_count as a
-    # feature, so a patient submitted with ONLY demographics and no vitals
-    # produces a spuriously high missing_count that the model interprets as
-    # risk, inflating priority to P1/P2 with no clinical basis. If 6 or
-    # more of the 7 vital fields are absent AND no rule-engine red flag
-    # fired, we cannot responsibly issue a high-acuity recommendation.
-    # Enforce P3 floor and flag low confidence so the nurse knows more
-    # data is required before a reliable assessment can be made.
-    VITAL_FIELDS = ("o2sat", "heartrate", "resprate", "sbp", "dbp", "temperature_c", "pain")
-    n_missing = sum(1 for f in VITAL_FIELDS if features.get(f, 0.0) == 0.0
-                    and not any(patient.get(k) is not None for k in _VITAL_SOURCE_KEYS.get(f, ())))
-    insufficient_data = (not rule_result.escalated) and n_missing >= 6
 
     # No red flag, ensemble favors its least-urgent trained class, and
     # vitals are unremarkable: documented rule-based P4 floor — see
