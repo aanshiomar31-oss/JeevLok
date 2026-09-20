@@ -4,8 +4,9 @@
 
 > **"The AI recommends. The clinician decides."**
 
-JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concepts of **Jeev** (Life) and **Lok** (Realm/Dimension)—preserving and safeguarding human life through clinical technology—JeevLok AI augments clinical nursing judgment with natural language processing, speech recognition, calibrated machine learning ensembles, and conversational retrieval-augmented generation (RAG). Every recommendation is explainable, reviewable, overridable, and permanently audit-logged.
+JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concepts of **Jeev** (Life) and **Lok** (Realm/Dimension)—safeguarding and prioritizing human life through clinical technology—JeevLok AI augments clinical nursing judgment with natural language processing, speech recognition, calibrated machine learning ensembles, and conversational retrieval-augmented generation (RAG). Every recommendation is explainable, reviewable, overridable, and permanently audit-logged.
 
+[![CI/CD Pipeline](https://github.com/aanshiomar31-oss/JeevLok/actions/workflows/ci.yml/badge.svg)](https://github.com/aanshiomar31-oss/JeevLok/actions/workflows/ci.yml)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115.6-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![React](https://img.shields.io/badge/React-18.3.1-20232A?logo=react&logoColor=61DAFB)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-6.0.5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
@@ -17,17 +18,31 @@ JeevLok AI is an advanced, production-grade Clinical Decision Support System (CD
 
 ---
 
+## Live Localhost Endpoints
+
+When running locally, access the services via these endpoints:
+
+| Service | Localhost URL | Description |
+| :--- | :--- | :--- |
+| **Frontend Web Application** | **[http://localhost:5173](http://localhost:5173)** | Interactive Command Center, Clinical NLP & Voice Intake, Live Queue, Explainability, and Copilot |
+| **Interactive OpenAPI (Swagger)** | **[http://localhost:8000/docs](http://localhost:8000/docs)** | Live Swagger UI for testing all clinical NLP, GenAI, and triage endpoints |
+| **ReDoc API Documentation** | **[http://localhost:8000/redoc](http://localhost:8000/redoc)** | Clean, publication-grade API documentation |
+| **Backend Health Check** | **[http://localhost:8000/api/v1/health](http://localhost:8000/api/v1/health)** | Verifies database connectivity, ML artifact readiness, and service status |
+
+---
+
 ## Executive Overview
 
-Emergency Departments operate under severe cognitive load, time pressure, and unpredictable patient surges. Traditional triage relies on subjective nurse evaluation, leading to variability in priority assignment during peak hours.
+Emergency Departments operate under severe cognitive load, time pressure, and unpredictable patient surges. Traditional triage relies heavily on subjective assessment, leading to variability in priority assignment during peak hours.
 
-JeevLok AI solves this by introducing a **multimodal, human-in-the-loop clinical intelligence platform**:
-- **Multimodal Intake**: Nurses can dictate symptoms via voice, type free-text clinical notes, or use standard structured inputs.
-- **Clinical NLP Engine**: Automatically parses free text, detects clinical negations (*"denies fever"*, *"no chest pain"*), extracts vital signs, and normalizes findings to ICD-10-CM codes.
+JeevLok AI addresses this through a **multimodal, human-in-the-loop clinical intelligence platform**:
+- **Multimodal Intake**: Dictate symptoms via microphone, paste raw physician notes, or use structured inputs.
+- **Clinical NLP Engine**: Parses free text, expands 30+ medical abbreviations, handles NegEx clinical negations (*"denies fever"*, *"no chest pain"*), extracts vital signs, and normalizes concepts to ICD-10-CM codes.
 - **Hybrid Intelligence Layer**: Combines a deterministic Clinical Rule Engine (establishing safety floors) with a 4-model Stacking Ensemble (XGBoost, LightGBM, CatBoost, HistGradientBoosting) trained on MIMIC-IV-ED data.
-- **Explainable GenAI Summaries**: Produces high-signal clinical briefings with calculated physiological indices (Shock Index, MAP) and immediate protocol recommendations.
-- **RAG Clinical Copilot**: An interactive conversational assistant answering complex clinical queries with multi-turn memory.
-- **Counterfactual "What-If" Simulator**: Dynamic slider simulator allowing clinicians to observe how physiological changes alter patient risk.
+- **Explainable GenAI Summaries**: Synthesizes high-signal clinical briefings with calculated physiological markers (Shock Index, MAP) and immediate protocol triggers.
+- **RAG Clinical Copilot**: An interactive conversational assistant answering complex clinical queries with multi-turn memory and live patient context injection.
+- **Counterfactual "What-If" Simulator**: Dynamic slider simulator allowing clinicians to observe how vital sign changes alter patient risk and priority in real time.
+- **Professional Clinical UI**: Designed with clean SVG iconography, accessible high-contrast typography, and a healthcare-grade design system.
 
 ---
 
@@ -192,6 +207,9 @@ FastAPI provides interactive OpenAPI documentation at `/docs` and ReDoc at `/red
 
 ```
 JeevLok/
+├── .github/
+│   └── workflows/
+│       └── ci.yml                     # Automated CI testing & building pipeline
 ├── backend/
 │   ├── alembic/                       # Database migration versions
 │   ├── app/
@@ -223,15 +241,18 @@ JeevLok/
 │   │   ├── services/                  # CPS scoring, monitor loop, patient registry
 │   │   └── websocket/                 # Real-time WebSocket connection manager
 │   ├── ml/                            # Machine learning models, SHAP, and rule engine
-│   ├── tests/                         # Pytest test suite
+│   ├── tests/                         # Pytest test suite (22 test cases)
 │   │   ├── test_nlp_pipeline.py       # Unit tests for NLP, negation, and NER
 │   │   ├── test_clinical_summary.py   # Unit tests for summary generation
-│   │   └── test_chat_copilot.py       # Unit tests for RAG assistant
+│   │   ├── test_chat_copilot.py       # Unit tests for RAG assistant
+│   │   ├── test_triage.py             # Unit tests for triage scoring & uncertainty
+│   │   └── test_workflow.py           # Unit tests for full intake/override workflow
 │   ├── Dockerfile                     # Multi-stage production backend container
 │   └── requirements.txt               # Pinned Python dependencies
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
+│   │   │   ├── common/                # Clean clinical SVG icon library (Icons.jsx)
 │   │   │   ├── nlp/                   # SymptomNLPInput, EntityChips, VoiceDictationBtn
 │   │   │   ├── chat/                  # ClinicalCopilot conversational drawer
 │   │   │   ├── summary/               # ClinicalSummaryCard with physiological indices
@@ -243,15 +264,17 @@ JeevLok/
 │   │   │   ├── CommandCenter.jsx      # Hospital overview & live stats
 │   │   │   └── LiveQueue.jsx          # CPS-prioritized waiting room
 │   │   └── services/api.js            # Axios client for all backend endpoints
-│   ├── Dockerfile                     # Nginx production container
+│   ├── vercel.json                    # Vercel SPA rewrite routing configuration
+│   ├── Dockerfile                     # Node production container
 │   └── package.json                   # React, Vite, and Tailwind dependencies
+├── render.yaml                        # 1-Click Render Blueprint configuration
 ├── docker-compose.yml                 # Multi-container orchestration
 └── README.md                          # Project documentation
 ```
 
 ---
 
-## Quickstart & Installation
+## Quickstart & Local Installation
 
 ### Option 1: Run with Docker Compose (Recommended)
 
@@ -264,7 +287,7 @@ cd JeevLok
 docker compose up --build
 ```
 
-- **Frontend Dashboard**: [http://localhost:5173](http://localhost:5173)
+- **Frontend Application**: [http://localhost:5173](http://localhost:5173)
 - **FastAPI Backend**: [http://localhost:8000](http://localhost:8000)
 - **Interactive OpenAPI Docs**: [http://localhost:8000/docs](http://localhost:8000/docs)
 
@@ -282,12 +305,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
 pip install -r requirements.txt
-
-# Copy environment variables
-cp .env.example .env
-
-# Run database migrations
-alembic upgrade head
 
 # Start FastAPI server
 uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
@@ -308,26 +325,45 @@ npm run dev
 
 ## Running Automated Tests
 
+Run the full pytest suite (all 22 test cases passing):
+
 ```bash
 cd backend
-pytest tests/test_nlp_pipeline.py tests/test_clinical_summary.py tests/test_chat_copilot.py -v
+pytest tests/ -v
 ```
+
+Test coverage includes:
+- Clinical NLP preprocessor abbreviation expansion
+- NegEx clinical negation scope detection
+- Medical NER vital sign parsing
+- Semantic concept matching and ICD-10 taxonomy
+- GenAI clinical summary generation (Shock Index, MAP)
+- RAG Clinical Copilot multi-turn conversation and context injection
+- Triage scoring, missing vitals uncertainty degradation, and hypoxia escalation
+- Live waiting queue persistence, nurse overrides, and WebSocket broadcasts
 
 ---
 
-## Deployment Guide
+## Cloud Deployment Guide
 
-### Frontend Deployment (Vercel)
-1. Link your GitHub repository to Vercel.
-2. Set **Root Directory** to `frontend`.
-3. Set **Build Command** to `npm run build` and **Output Directory** to `dist`.
-4. Configure environment variable: `VITE_API_URL=https://your-backend-api.onrender.com`.
+### Option A: 1-Click Render Blueprint (Backend + Frontend)
+1. In the **[Render Dashboard](https://dashboard.render.com/)**, select **New +** $\rightarrow$ **Blueprint**.
+2. Connect `https://github.com/aanshiomar31-oss/JeevLok`.
+3. Render reads `render.yaml` to spin up:
+   - `jeevlok-backend`: Python web service running `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+   - `jeevlok-frontend`: Static site serving `dist/` with SPA routing and automatic `VITE_API_URL` linkage.
 
-### Backend Deployment (Render / Railway)
-1. Create a new Web Service pointing to `backend`.
-2. Set **Build Command** to `pip install -r requirements.txt`.
-3. Set **Start Command** to `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
-4. Set environment variables from `.env.example`.
+### Option B: Vercel (Frontend) + Render / Railway (Backend)
+1. **Backend on Render**:
+   - Web Service pointing to `backend/`.
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+   - Copy backend URL (e.g., `https://jeevlok-backend.onrender.com`).
+2. **Frontend on Vercel**:
+   - Import `aanshiomar31-oss/JeevLok` on **[Vercel](https://vercel.com/new)**.
+   - Root Directory: `frontend`.
+   - Environment Variable: `VITE_API_URL=https://jeevlok-backend.onrender.com`.
+   - `vercel.json` automatically manages client-side SPA route rewrites.
 
 ---
 
@@ -343,6 +379,6 @@ pytest tests/test_nlp_pipeline.py tests/test_clinical_summary.py tests/test_chat
 
 ## Author & Acknowledgements
 
-- **Lead Engineer & Architect**: **Aanshi Omar**
-- **Special Thanks**: Harshita for foundational discussions during early hackathon ideation on emergency triage concepts.
+- **Lead Engineer & Architect**: **Aanshi Omar** ([@aanshiomar31-oss](https://github.com/aanshiomar31-oss))
+- **Attribution**: Originally developed collaboratively during early conceptual ideation. This repository represents an independently enhanced, production-grade clinical AI platform featuring advanced NLP pipelines, GenAI clinical summarization, RAG copilot, and Explainable AI counterfactual simulation.
 - **License**: MIT License.
