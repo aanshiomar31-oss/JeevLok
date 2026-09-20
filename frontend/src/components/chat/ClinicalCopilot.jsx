@@ -80,6 +80,7 @@ export default function ClinicalCopilot({ patientContext = null }) {
     <>
       {/* Floating Trigger Button */}
       <button
+        id="copilot-toggle-btn"
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-xl hover:from-indigo-700 hover:to-purple-700 transition transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"

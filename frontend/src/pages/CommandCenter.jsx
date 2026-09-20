@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { fetchQueue } from "../services/api.js";
@@ -114,6 +115,92 @@ export default function CommandCenter() {
           delay={0.2}
         />
         <KPICard label="Model" value={queue ? "Live" : "…"} accent="text-accent-mintInk" delay={0.25} />
+      </div>
+
+      {/* AI & Clinical Innovation Spotlight */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <Link
+          to="/intake"
+          className="panel panel-hover p-5 border-l-4 border-l-indigo-500 bg-gradient-to-br from-white to-indigo-50/30 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl">🎙️</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">NLP + Voice</span>
+            </div>
+            <h3 className="mt-3 font-bold text-surface-ink group-hover:text-indigo-600 transition">Clinical NLP & Voice Intake</h3>
+            <p className="mt-1 text-xs text-surface-muted leading-relaxed">
+              Dictate or paste doctor notes. Extracts vitals, handles NegEx clinical negations, and auto-fills triage in real time.
+            </p>
+          </div>
+          <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-indigo-600">
+            <span>Try Voice / Text Intake</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </Link>
+
+        <Link
+          to="/explainability"
+          className="panel panel-hover p-5 border-l-4 border-l-emerald-500 bg-gradient-to-br from-white to-emerald-50/30 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl">💡</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Explainable AI</span>
+            </div>
+            <h3 className="mt-3 font-bold text-surface-ink group-hover:text-emerald-600 transition">Counterfactual "What-If" Sim</h3>
+            <p className="mt-1 text-xs text-surface-muted leading-relaxed">
+              Interactive sliders on SBP, HR, SpO2, and RR to simulate real-time risk deltas (ΔRisk) and plain-English SHAP narratives.
+            </p>
+          </div>
+          <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-emerald-600">
+            <span>Simulate Scenarios</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </Link>
+
+        <div
+          onClick={() => {
+            const btn = document.querySelector("#copilot-toggle-btn");
+            if (btn) btn.click();
+          }}
+          className="panel panel-hover p-5 border-l-4 border-l-purple-500 bg-gradient-to-br from-white to-purple-50/30 flex flex-col justify-between group cursor-pointer"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl">🤖</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">RAG Copilot</span>
+            </div>
+            <h3 className="mt-3 font-bold text-surface-ink group-hover:text-purple-600 transition">Clinical Copilot Assistant</h3>
+            <p className="mt-1 text-xs text-surface-muted leading-relaxed">
+              Protocol-grounded assistant with Shock Index, MAP, and qSOFA calculation. Injects live patient vitals automatically.
+            </p>
+          </div>
+          <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-purple-600">
+            <span>Open Copilot Drawer</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </div>
+
+        <Link
+          to="/queue"
+          className="panel panel-hover p-5 border-l-4 border-l-amber-500 bg-gradient-to-br from-white to-amber-50/30 flex flex-col justify-between group"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-2xl">⏳</span>
+              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Live Queue</span>
+            </div>
+            <h3 className="mt-3 font-bold text-surface-ink group-hover:text-amber-600 transition">Clinical Priority Score (CPS)</h3>
+            <p className="mt-1 text-xs text-surface-muted leading-relaxed">
+              Dynamically ranks waiting patients by combining ML acuity risk, wait time degradation, and age vulnerability.
+            </p>
+          </div>
+          <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-amber-600">
+            <span>View Live Queue</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </div>
+        </Link>
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
