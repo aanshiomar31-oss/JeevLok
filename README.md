@@ -377,8 +377,4 @@ Test coverage includes:
 
 ---
 
-## Author & Acknowledgements
 
-- **Lead Engineer & Architect**: **Aanshi Omar** ([@aanshiomar31-oss](https://github.com/aanshiomar31-oss))
-- **Attribution**: Originally developed collaboratively during early conceptual ideation. This repository represents an independently enhanced, production-grade clinical AI platform featuring advanced NLP pipelines, GenAI clinical summarization, RAG copilot, and Explainable AI counterfactual simulation.
-- **License**: MIT License.
