@@ -291,8 +291,7 @@ export default function PatientIntake() {
               onClick={() => setShowProtocols(true)}
               className="mt-4 w-full rounded-xl border border-red-200 bg-red-50 py-2 text-sm font-semibold text-red-600 transition hover:bg-red-100"
             >
-              {submitted.triggered_protocols[0].icon} Re-open{" "}
-              {submitted.triggered_protocols.map((p) => p.title).join(" + ")} Protocol
+              Re-open {submitted.triggered_protocols.map((p) => p.title).join(" + ")} Protocol
             </button>
           )}
             {/* Explainable Clinical Summary Card */}

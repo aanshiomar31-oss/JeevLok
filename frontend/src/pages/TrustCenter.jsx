@@ -41,7 +41,7 @@ export default function TrustCenter() {
       <div className="flex flex-wrap justify-between items-center gap-3">
         <div>
           <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-            🛡️ Clinical Trust & Adoption Center
+            Clinical Trust & Adoption Center
           </h1>
           <p className="text-sm text-surface-muted">
             Auditing decision accuracy, override logs, and onboarding training.

@@ -4,18 +4,31 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useLiveSocket } from "../hooks/useLiveSocket.js";
 import { useDemo } from "../context/DemoContext.jsx";
 import ClinicalCopilot from "./chat/ClinicalCopilot.jsx";
+import {
+  IconActivity,
+  IconClipboard,
+  IconClock,
+  IconCompare,
+  IconBrain,
+  IconShield,
+  IconLock,
+  IconBuilding,
+  IconFileText,
+  IconLayers,
+  IconStethoscope,
+} from "./common/Icons.jsx";
 
 const NAV_LINKS = [
-  { to: "/", label: "Command Center", icon: "📊", end: true },
-  { to: "/intake", label: "Patient Intake", icon: "📋" },
-  { to: "/queue", label: "Live Queue", icon: "⏳" },
-  { to: "/comparison", label: "Comparison", icon: "🔄" },
-  { to: "/explainability", label: "Explainability", icon: "💡" },
-  { to: "/trust-center", label: "Trust Center", icon: "🛡️" },
-  { to: "/security", label: "Security Dashboard", icon: "🔒" },
-  { to: "/hospital-network", label: "Hospital Network", icon: "🏥" },
-  { to: "/audit", label: "Audit Logs", icon: "📜" },
-  { to: "/digital-twin", label: "Digital Twin", icon: "👥" },
+  { to: "/", label: "Command Center", icon: IconActivity, end: true },
+  { to: "/intake", label: "Patient Intake", icon: IconClipboard },
+  { to: "/queue", label: "Live Queue", icon: IconClock },
+  { to: "/comparison", label: "Comparison", icon: IconCompare },
+  { to: "/explainability", label: "Explainability", icon: IconBrain },
+  { to: "/trust-center", label: "Trust Center", icon: IconShield },
+  { to: "/security", label: "Security Dashboard", icon: IconLock },
+  { to: "/hospital-network", label: "Hospital Network", icon: IconBuilding },
+  { to: "/audit", label: "Audit Logs", icon: IconFileText },
+  { to: "/digital-twin", label: "Digital Twin", icon: IconLayers },
 ];
 
 export default function Layout({ children }) {
@@ -27,16 +40,16 @@ export default function Layout({ children }) {
   // Listen to live events to update the top activity ticker
   useLiveSocket({
     new_patient: (e) => {
-      setTickerMessage(`🚨 New Intake: Patient ${e.patient_id} assigned recommended priority ${e.priority}`);
+      setTickerMessage(`New Intake: Patient ${e.patient_id} assigned recommended priority ${e.priority}`);
     },
     override: (e) => {
-      setTickerMessage(`✍️ Priority Override: Stay #${e.stay_id} updated (${e.original_priority} → ${e.new_priority})`);
+      setTickerMessage(`Priority Override: Stay #${e.stay_id} updated (${e.original_priority} → ${e.new_priority})`);
     },
     vitals_updated: (e) => {
-      setTickerMessage(`🩺 Vitals Update: Stay #${e.stay_id} vitals refreshed`);
+      setTickerMessage(`Vitals Update: Stay #${e.stay_id} vitals refreshed`);
     },
     retriage_breach: (e) => {
-      setTickerMessage(`⚠️ Breach Warning: Patient ${e.patient_id} has exceeded wait threshold`);
+      setTickerMessage(`Breach Warning: Patient ${e.patient_id} has exceeded wait threshold`);
     }
   });
 
@@ -90,7 +103,7 @@ export default function Layout({ children }) {
                 }`
               }
             >
-              <span className="text-lg shrink-0">{link.icon}</span>
+              <link.icon className="w-5 h-5 shrink-0" />
               {isExpanded && (
                 <motion.span
                   initial={{ opacity: 0 }}
@@ -111,7 +124,9 @@ export default function Layout({ children }) {
               The AI recommends. <br />The nurse decides.
             </p>
           ) : (
-            <div className="text-center text-sm font-bold text-accent-mintInk">🩺</div>
+            <div className="flex justify-center text-accent-mintInk">
+              <IconStethoscope className="w-5 h-5" />
+            </div>
           )}
         </div>
       </motion.aside>

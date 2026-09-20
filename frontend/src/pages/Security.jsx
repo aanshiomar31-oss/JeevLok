@@ -49,7 +49,7 @@ export default function Security() {
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-          🔒 Patient Data Protection & Security
+          Patient Data Protection & Security
         </h1>
         <p className="text-sm text-surface-muted">
           Active session encryption monitoring, role matrices, and audit logs.

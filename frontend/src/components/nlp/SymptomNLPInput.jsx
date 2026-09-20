@@ -2,6 +2,7 @@ import { useState } from "react";
 import VoiceDictationBtn from "./VoiceDictationBtn.jsx";
 import EntityChips from "./EntityChips.jsx";
 import { parseSymptomsNLP } from "../../services/api.js";
+import { IconBrain } from "../common/Icons.jsx";
 
 const PRESET_CLINICAL_CASES = [
   {
@@ -113,7 +114,7 @@ export default function SymptomNLPInput({ onApplyAutoFill, isApplying = false })
             </>
           ) : (
             <>
-              <span>✨</span> Parse & Auto-Fill Form
+              <IconBrain className="w-4 h-4" /> Parse & Auto-Fill Form
             </>
           )}
         </button>

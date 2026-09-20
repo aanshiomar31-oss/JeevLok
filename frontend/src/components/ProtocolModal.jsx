@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { IconAlert } from "./common/Icons.jsx";
 
 const COLOR_MAP = {
   red: {
@@ -71,7 +72,9 @@ export default function ProtocolModal({ protocols, patientId, onClose }) {
           <div className={`${c.header} px-6 py-5 text-white`}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <span className="text-3xl">{protocol.icon}</span>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
+                  <IconAlert className="w-6 h-6 text-white" />
+                </div>
                 <div>
                   <p className="text-xl font-bold">{protocol.title}</p>
                   <p className="text-sm font-medium text-white/80">

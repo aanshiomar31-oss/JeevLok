@@ -93,7 +93,7 @@ export default function HospitalNetwork() {
       {/* Page Header */}
       <div>
         <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-          🏥 Regional Hospital Network Coordination
+          Regional Hospital Network Coordination
         </h1>
         <p className="text-sm text-surface-muted">
           Inspect federated queues, referral loads, and load-balance patients dynamically.

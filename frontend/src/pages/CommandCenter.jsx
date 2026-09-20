@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Bar, BarChart, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { fetchQueue } from "../services/api.js";
+import { IconMic, IconBrain, IconBot, IconClock } from "../components/common/Icons.jsx";
 import { useLiveSocket } from "../hooks/useLiveSocket.js";
 import { useSurge } from "../context/SurgeContext.jsx";
 import LiveAlert from "../components/LiveAlert.jsx";
@@ -125,7 +126,9 @@ export default function CommandCenter() {
         >
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-2xl">🎙️</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-100 text-indigo-600">
+                <IconMic className="w-5 h-5" />
+              </div>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700">NLP + Voice</span>
             </div>
             <h3 className="mt-3 font-bold text-surface-ink group-hover:text-indigo-600 transition">Clinical NLP & Voice Intake</h3>
@@ -145,7 +148,9 @@ export default function CommandCenter() {
         >
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-2xl">💡</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+                <IconBrain className="w-5 h-5" />
+              </div>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Explainable AI</span>
             </div>
             <h3 className="mt-3 font-bold text-surface-ink group-hover:text-emerald-600 transition">Counterfactual "What-If" Sim</h3>
@@ -168,7 +173,9 @@ export default function CommandCenter() {
         >
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-2xl">🤖</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-100 text-purple-600">
+                <IconBot className="w-5 h-5" />
+              </div>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">RAG Copilot</span>
             </div>
             <h3 className="mt-3 font-bold text-surface-ink group-hover:text-purple-600 transition">Clinical Copilot Assistant</h3>
@@ -188,7 +195,9 @@ export default function CommandCenter() {
         >
           <div>
             <div className="flex items-center justify-between">
-              <span className="text-2xl">⏳</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-100 text-amber-600">
+                <IconClock className="w-5 h-5" />
+              </div>
               <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">Live Queue</span>
             </div>
             <h3 className="mt-3 font-bold text-surface-ink group-hover:text-amber-600 transition">Clinical Priority Score (CPS)</h3>

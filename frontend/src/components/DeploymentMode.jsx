@@ -1,25 +1,26 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { IconActivity, IconBuilding, IconLayers } from "./common/Icons.jsx";
 
 const DEPLOYMENT_MODES = [
   {
     id: "basic",
     name: "Basic Station",
-    icon: "💻",
+    icon: IconActivity,
     desc: "Single workstation local installation. Fully offline capable with SQLite backend. Data stays on-device.",
     architecture: ["Workstation", "Local Database"],
   },
   {
     id: "connected",
     name: "Connected Enterprise",
-    icon: "🌐",
+    icon: IconBuilding,
     desc: "Intra-hospital network connection. Shared triage database and WebSockets supporting multiple nurses and doctors simultaneously.",
     architecture: ["Triage Desk 1", "Triage Desk 2", "Doctor Console", "Shared Server DB"],
   },
   {
     id: "advanced",
     name: "Cloud Command Hub",
-    icon: "☁️",
+    icon: IconLayers,
     desc: "Regional cloud architecture coordinate. Enables inter-hospital referrals, capacity maps, and load balancing across nodes.",
     architecture: ["Cloud Gateway", "Rural Clinic", "District Gen", "Trauma Hub", "Global Analytics"],
   },
@@ -60,7 +61,9 @@ export default function DeploymentMode() {
         {/* Detail Panel */}
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">{activeMode.icon}</span>
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-blue/10 text-accent-blue">
+              <activeMode.icon className="w-5 h-5" />
+            </div>
             <div>
               <h4 className="text-sm font-bold text-white">{activeMode.name} Setup</h4>
               <p className="text-xs text-accent-mint font-semibold">Triage Scale Target</p>

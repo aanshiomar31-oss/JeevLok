@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { queryCopilotChat } from "../../services/api.js";
+import { IconBot, IconStethoscope } from "../common/Icons.jsx";
 
 const QUICK_PROMPTS = [
   "Explain this triage recommendation",
@@ -85,7 +86,7 @@ export default function ClinicalCopilot({ patientContext = null }) {
         onClick={() => setIsOpen((prev) => !prev)}
         className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-xl hover:from-indigo-700 hover:to-purple-700 transition transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
       >
-        <span className="text-lg">✨</span>
+        <IconBot className="w-5 h-5" />
         <span>{isOpen ? "Close Copilot" : "Clinical Copilot"}</span>
       </button>
 
@@ -95,8 +96,8 @@ export default function ClinicalCopilot({ patientContext = null }) {
           {/* Header */}
           <div className="flex items-center justify-between border-b border-surface-border bg-gradient-to-r from-indigo-50 via-white to-purple-50 px-4 py-3 dark:from-slate-800 dark:via-slate-900 dark:to-indigo-950/40">
             <div className="flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white text-base shadow-sm">
-                🩺
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600 text-white shadow-sm">
+                <IconStethoscope className="w-4 h-4 text-white" />
               </span>
               <div>
                 <h3 className="text-sm font-bold text-surface-ink">Clinical Copilot</h3>

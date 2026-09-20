@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { IconLock, IconActivity, IconShield } from "./common/Icons.jsx";
 
 export default function SecurityCard({ status }) {
   const encStatus = status || {
@@ -11,28 +12,28 @@ export default function SecurityCard({ status }) {
   const cards = [
     {
       title: "Data Encryption",
-      icon: "🔒",
+      icon: IconLock,
       value: encStatus.database_encrypted ? "Encrypted" : "Decrypted",
       desc: `Storage: ${encStatus.cipher_suite || "AES-256"}. Database tables are encrypted at rest with zero-knowledge keys.`,
       status: encStatus.database_encrypted ? "active" : "disabled",
     },
     {
       title: "Network Security",
-      icon: "📡",
+      icon: IconActivity,
       value: encStatus.ssl_active ? "Secure (TLS 1.3)" : "Insecure",
       desc: "All socket traffic and REST endpoints use SHA-256 transport layer encryption.",
       status: encStatus.ssl_active ? "active" : "disabled",
     },
     {
       title: "Identity Protection",
-      icon: "🔑",
+      icon: IconLock,
       value: "MFA & SSO",
       desc: "Multi-Factor Authentication is enforced globally. Machine logs verify device fingerprint signature.",
       status: "active",
     },
     {
       title: "Threat Shield",
-      icon: "🛡️",
+      icon: IconShield,
       value: "Active IPS",
       desc: "Intrusion Prevention System monitoring REST & WebSocket requests. Live block rate: 0.0%",
       status: "active",
@@ -51,7 +52,9 @@ export default function SecurityCard({ status }) {
         >
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <span className="text-2xl">{card.icon}</span>
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-wash text-accent-mint border border-accent-mint/20">
+                <card.icon className="w-5 h-5" />
+              </div>
               <div>
                 <h4 className="text-xs font-bold text-white uppercase tracking-wider">{card.title}</h4>
                 <p className="text-xs text-surface-muted mt-0.5">{card.value}</p>

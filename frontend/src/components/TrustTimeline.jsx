@@ -1,4 +1,12 @@
 import { motion } from "framer-motion";
+import {
+  IconClipboard,
+  IconBrain,
+  IconStethoscope,
+  IconCheck,
+  IconAlert,
+  IconClock,
+} from "./common/Icons.jsx";
 
 export default function TrustTimeline({ patient }) {
   if (!patient) {
@@ -15,14 +23,14 @@ export default function TrustTimeline({ patient }) {
       time: "T+0m",
       desc: `Intake complete for Stay #${patient.stay_id}. Chief complaint: "${patient.chief_complaint || "None recorded"}"`,
       status: "completed",
-      icon: "📥",
+      icon: IconClipboard,
     },
     {
       title: "AI Recommendation Engine",
       time: "T+1m",
       desc: `ML stack suggested ${patient.recommended_priority} (Risk score: ${patient.risk_score}/100, Confidence: ${Math.round(patient.confidence * 100)}%).`,
       status: "completed",
-      icon: "🧠",
+      icon: IconBrain,
       meta: patient.uncertainty_reason ? `Completeness Warn: ${patient.uncertainty_reason}` : null,
     },
     {
@@ -32,7 +40,7 @@ export default function TrustTimeline({ patient }) {
         ? `Clinician reviewed recommendation and decided to adjust priority.`
         : `Clinician approved recommended priority: ${patient.priority}.`,
       status: "completed",
-      icon: "👩‍⚕️",
+      icon: IconStethoscope,
     },
     {
       title: "Priority Resolution (Override)",
@@ -41,7 +49,7 @@ export default function TrustTimeline({ patient }) {
         ? `Override executed to ${patient.priority}. Stated cause: "${patient.uncertainty_reason || "Clinical judgment"}"`
         : "No override required. Machine recommendation matched clinical presentation.",
       status: patient.overridden ? "warn" : "neutral",
-      icon: patient.overridden ? "✍️" : "✅",
+      icon: patient.overridden ? IconAlert : IconCheck,
     },
     {
       title: "Queue Re-Assessment Loop",
@@ -50,7 +58,7 @@ export default function TrustTimeline({ patient }) {
         ? `Patient has waited ${Math.round(patient.waited_minutes)}m in queue. Retriage timer checks active.`
         : "Vitals update loop active. No breaches reported.",
       status: "active",
-      icon: "⏳",
+      icon: IconClock,
     },
   ];
 
@@ -71,8 +79,8 @@ export default function TrustTimeline({ patient }) {
             className="relative"
           >
             {/* Step Node Icon */}
-            <span className="absolute -left-10 top-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-accent-wash border border-surface-border text-sm shadow-sm">
-              {step.icon}
+            <span className="absolute -left-10 top-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-accent-wash border border-surface-border text-accent-blue shadow-sm">
+              <step.icon className="w-3.5 h-3.5" />
             </span>
 
             {/* Step details */}

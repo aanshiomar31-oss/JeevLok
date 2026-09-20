@@ -1,3 +1,5 @@
+import { IconBuilding } from "./common/Icons.jsx";
+
 const HOSPITALS = [
   {
     id: "rural",
@@ -6,7 +8,6 @@ const HOSPITALS = [
     beds: 12,
     nurses: 4,
     desc: "Single physician, local community coverage, restricted critical trauma beds.",
-    icon: "🏡",
   },
   {
     id: "district",
@@ -15,7 +16,6 @@ const HOSPITALS = [
     beds: 40,
     nurses: 15,
     desc: "Multi-specialty secondary care center with intermediate ICU capabilities.",
-    icon: "🏢",
   },
   {
     id: "urban",
@@ -24,7 +24,6 @@ const HOSPITALS = [
     beds: 120,
     nurses: 45,
     desc: "Level 1 regional trauma hub, full stroke/cardiac response capabilities.",
-    icon: "🏥",
   },
 ];
 
@@ -50,7 +49,9 @@ export default function HospitalSelector({ selectedId, onSelect }) {
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-2xl">{h.icon}</span>
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent-mint/10 text-accent-mint">
+                  <IconBuilding className="w-5 h-5" />
+                </div>
                 <span className="text-[10px] font-bold text-accent-mint bg-[#10241B] px-2 py-0.5 rounded border border-accent-mint/20">
                   {h.flow}
                 </span>

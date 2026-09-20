@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fetchQueue, submitOverride, updateVitals } from "../services/api.js";
 import { useLiveSocket } from "../hooks/useLiveSocket.js";
+import { IconAlert } from "../components/common/Icons.jsx";
 import QueueTable from "../components/QueueTable.jsx";
 import PatientCard from "../components/PatientCard.jsx";
 import PriorityBadge from "../components/PriorityBadge.jsx";
@@ -101,7 +102,7 @@ export default function LiveQueue() {
             {toast.kind === "breach" ? (
               <div className="px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <span className="text-lg">⚠️</span>
+                  <IconAlert className="w-5 h-5 text-orange-600 shrink-0" />
                   <p className="text-sm font-bold text-orange-700">Re-Triage Required</p>
                 </div>
                 <p className="mt-1 text-xs text-orange-600">{toast.text}</p>

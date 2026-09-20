@@ -1,21 +1,24 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { generateClinicalSummary } from "../../services/api.js";
+import { IconClipboard } from "../common/Icons.jsx";
 
 export default function ClinicalSummaryCard({ patientData, triageResult }) {
   const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!patientData || !triageResult) return;
 
     let isMounted = true;
     setLoading(true);
+    setError(null);
     generateClinicalSummary(patientData, triageResult)
       .then((data) => {
         if (isMounted) setSummary(data);
       })
       .catch((err) => {
-        console.warn("Summary generation failed:", err);
+        if (isMounted) setError("Summary unavailable");
       })
       .finally(() => {
         if (isMounted) setLoading(false);
@@ -28,16 +31,13 @@ export default function ClinicalSummaryCard({ patientData, triageResult }) {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-surface-border bg-surface p-5 text-center shadow-sm">
-        <div className="inline-flex items-center gap-2 text-xs font-semibold text-accent-mintInk">
-          <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-accent-mint border-t-transparent" />
-          Synthesizing Explainable Clinical Summary…
-        </div>
+      <div className="rounded-xl border border-surface-border bg-surface p-4 text-xs text-surface-muted animate-pulse">
+        Generating explainable clinical summary…
       </div>
     );
   }
 
-  if (!summary) return null;
+  if (error || !summary) return null;
 
   const vitals = summary.vitals_summary || {};
   const shockIndex = vitals.shock_index;
@@ -47,7 +47,7 @@ export default function ClinicalSummaryCard({ patientData, triageResult }) {
     <div className="rounded-xl border border-indigo-200 bg-gradient-to-br from-indigo-50/40 via-white to-slate-50/60 p-5 shadow-sm dark:border-indigo-950 dark:from-slate-900 dark:via-slate-900/90 dark:to-indigo-950/20">
       <div className="flex items-center justify-between border-b border-indigo-100 pb-3 dark:border-indigo-900/50">
         <div className="flex items-center gap-2">
-          <span className="text-base">📋</span>
+          <IconClipboard className="w-4 h-4 text-indigo-600" />
           <h3 className="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300">
             Explainable Clinical Summary
           </h3>
@@ -76,7 +76,7 @@ export default function ClinicalSummaryCard({ patientData, triageResult }) {
               <div className="flex items-center justify-between">
                 <span className="font-semibold">Shock Index: {shockIndex}</span>
                 <span className="text-[10px] uppercase font-bold">
-                  {shockIndex >= 0.9 ? "⚠ Elevated" : "Normal"}
+                  {shockIndex >= 0.9 ? "Elevated" : "Normal"}
                 </span>
               </div>
               <p className="mt-0.5 text-[11px] opacity-85">
@@ -96,7 +96,7 @@ export default function ClinicalSummaryCard({ patientData, triageResult }) {
               <div className="flex items-center justify-between">
                 <span className="font-semibold">MAP: {mapVal} mmHg</span>
                 <span className="text-[10px] uppercase font-bold">
-                  {mapVal < 65 ? "⚠ Low" : "Adequate"}
+                  {mapVal < 65 ? "Low" : "Adequate"}
                 </span>
               </div>
               <p className="mt-0.5 text-[11px] opacity-85">
