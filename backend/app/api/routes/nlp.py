@@ -17,6 +17,7 @@ from fastapi import APIRouter, HTTPException
 from app.core.logging_config import get_logger
 from app.nlp.pipeline import nlp_pipeline
 from app.nlp.similarity import ClinicalSemanticMatcher
+from app.llm.triage_chain import llm_triage_pipeline
 from app.schemas.nlp import (
     SymptomParseRequest,
     SymptomParseResponse,
@@ -24,6 +25,10 @@ from app.schemas.nlp import (
     NormalizeResponse,
     EntityChip,
     ICDMapping,
+    LLMTriageRequest,
+    LLMTriageResponse,
+    VitalsSummary,
+    PromptOrchestrationDebug,
 )
 
 router = APIRouter(prefix="/nlp", tags=["nlp"])
@@ -74,3 +79,41 @@ def normalize_symptom(body: NormalizeRequest) -> NormalizeResponse:
     except Exception as exc:
         logger.error("Failed to normalize symptom '%s': %s", body.query, exc)
         raise HTTPException(status_code=500, detail=f"Normalization error: {str(exc)}")
+
+
+@router.post("/llm-triage", response_model=LLMTriageResponse)
+def llm_triage(body: LLMTriageRequest) -> LLMTriageResponse:
+    """
+    LLM-powered Patient Triage AI inference pipeline using LangChain prompt orchestration.
+    Parses patient symptom descriptions and clinical context, prioritizing case urgency
+    via a modular inference pipeline combining NLP preprocessing, NegEx, physiological vitals,
+    and clinical emergency protocols.
+    """
+    try:
+        result = llm_triage_pipeline.run_pipeline(
+            raw_text=body.text,
+            temperature=body.temperature,
+            include_prompt_debug=body.include_prompt_debug,
+        )
+        return LLMTriageResponse(
+            priority=result["priority"],
+            urgency_level=result["urgency_level"],
+            risk_score=result["risk_score"],
+            confidence=result["confidence"],
+            summary_headline=result["summary_headline"],
+            clinical_rationale=result["clinical_rationale"],
+            physiological_drivers=result["physiological_drivers"],
+            differential_considerations=result["differential_considerations"],
+            recommended_protocols=result["recommended_protocols"],
+            red_flags=result["red_flags"],
+            vitals_summary=VitalsSummary(**result["vitals_summary"]),
+            affirmed_findings=result["affirmed_findings"],
+            negated_findings=result["negated_findings"],
+            auto_fill_payload=result["auto_fill_payload"],
+            prompt_orchestration=PromptOrchestrationDebug(**result["prompt_orchestration"]) if result.get("prompt_orchestration") else None,
+            disclaimer=result["disclaimer"],
+        )
+    except Exception as exc:
+        logger.error("Failed to run LLM triage pipeline: %s", exc, exc_info=True)
+        raise HTTPException(status_code=500, detail=f"LLM triage pipeline error: {str(exc)}")
+

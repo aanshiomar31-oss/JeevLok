@@ -51,6 +51,8 @@ class Settings(BaseSettings):
     OPENAI_API_KEY: str | None = None
     GEMINI_API_KEY: str | None = None
     LLM_PROVIDER: str = "local"  # local | openai | gemini
+    LLM_MODEL: str = "gpt-4o-mini"
+    LLM_FALLBACK_ENABLED: bool = True
 
     # --- Security ------------------------------------------------------
     SECRET_KEY: str = "CHANGE_ME_INSECURE_DEV_ONLY_SECRET_KEY"

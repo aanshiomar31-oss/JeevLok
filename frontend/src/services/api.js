@@ -158,6 +158,21 @@ export async function parseSymptomsNLP(text) {
   return response.data;
 }
 
+/**
+ * Execute LLM-Powered Patient Triage AI with LangChain Prompt Orchestration.
+ * Parses clinical context, extracts vitals & NegEx negations, prioritizes urgency (P1-P5),
+ * and triggers clinical emergency protocols.
+ */
+export async function runLLMTriage(text, options = {}) {
+  const { temperature = 0.0, includePromptDebug = true } = options;
+  const response = await apiClient.post("/nlp/llm-triage", {
+    text,
+    temperature,
+    include_prompt_debug: includePromptDebug,
+  });
+  return response.data;
+}
+
 /** Normalize a colloquial symptom into its standardized medical concept and ICD-10 code */
 export async function normalizeSymptom(query) {
   const response = await apiClient.post("/nlp/normalize", { query });

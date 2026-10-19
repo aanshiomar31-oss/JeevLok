@@ -42,6 +42,13 @@ from app.websocket.connection_manager import manager
 from ml.predict import predict
 from ml.sepsis import assess_sepsis
 from ml.protocol_triggers import detect_protocols, protocols_to_dict
+from app.llm.triage_chain import llm_triage_pipeline
+from app.schemas.nlp import (
+    LLMTriageRequest,
+    LLMTriageResponse,
+    VitalsSummary,
+    PromptOrchestrationDebug,
+)
 
 router = APIRouter(prefix="/triage", tags=["triage"])
 logger = get_logger(__name__)
@@ -137,3 +144,36 @@ async def create_triage_recommendation(
         # Protocols
         triggered_protocols=protocols_data,
     )
+
+
+@router.post("/llm-triage", response_model=LLMTriageResponse)
+def triage_with_llm(body: LLMTriageRequest) -> LLMTriageResponse:
+    """
+    LLM-powered Patient Triage AI inference pipeline (convenience alias).
+    Combines NLP parsing, NegEx, LangChain prompt orchestration, ESI prioritization,
+    and protocol triggers.
+    """
+    result = llm_triage_pipeline.run_pipeline(
+        raw_text=body.text,
+        temperature=body.temperature,
+        include_prompt_debug=body.include_prompt_debug,
+    )
+    return LLMTriageResponse(
+        priority=result["priority"],
+        urgency_level=result["urgency_level"],
+        risk_score=result["risk_score"],
+        confidence=result["confidence"],
+        summary_headline=result["summary_headline"],
+        clinical_rationale=result["clinical_rationale"],
+        physiological_drivers=result["physiological_drivers"],
+        differential_considerations=result["differential_considerations"],
+        recommended_protocols=result["recommended_protocols"],
+        red_flags=result["red_flags"],
+        vitals_summary=VitalsSummary(**result["vitals_summary"]),
+        affirmed_findings=result["affirmed_findings"],
+        negated_findings=result["negated_findings"],
+        auto_fill_payload=result["auto_fill_payload"],
+        prompt_orchestration=PromptOrchestrationDebug(**result["prompt_orchestration"]) if result.get("prompt_orchestration") else None,
+        disclaimer=result["disclaimer"],
+    )
+

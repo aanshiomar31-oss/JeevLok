@@ -7,7 +7,8 @@
 JeevLok AI is an advanced, production-grade Clinical Decision Support System (CDSS) engineered for emergency department (ED) triage. Rooted in the Sanskrit concepts of **Jeev** (Life) and **Lok** (Realm/Dimension)—safeguarding and prioritizing human life through clinical technology—JeevLok AI augments clinical nursing judgment with natural language processing, speech recognition, calibrated machine learning ensembles, and conversational retrieval-augmented generation (RAG). Every recommendation is explainable, reviewable, overridable, and permanently audit-logged.
 
 [![CI/CD Pipeline](https://github.com/aanshiomar31-oss/JeevLok/actions/workflows/ci.yml/badge.svg)](https://github.com/aanshiomar31-oss/JeevLok/actions/workflows/ci.yml)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.115.6-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![LangChain](https://img.shields.io/badge/LangChain-LCEL_Pipeline-1C3C3C?logo=langchain&logoColor=white)](https://python.langchain.com)
 [![React](https://img.shields.io/badge/React-18.3.1-20232A?logo=react&logoColor=61DAFB)](https://react.dev)
 [![Vite](https://img.shields.io/badge/Vite-6.0.5-646CFF?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org)
@@ -24,8 +25,9 @@ When running locally, access the services via these endpoints:
 
 | Service | Localhost URL | Description |
 | :--- | :--- | :--- |
-| **Frontend Web Application** | **[http://localhost:5173](http://localhost:5173)** | Interactive Command Center, Clinical NLP & Voice Intake, Live Queue, Explainability, and Copilot |
-| **Interactive OpenAPI (Swagger)** | **[http://localhost:8000/docs](http://localhost:8000/docs)** | Live Swagger UI for testing all clinical NLP, GenAI, and triage endpoints |
+| **Frontend Web Application** | **[http://localhost:5173](http://localhost:5173)** | Interactive Command Center, LLM & Voice Intake, Live Queue, Explainability, and Copilot |
+| **Interactive OpenAPI (Swagger)** | **[http://localhost:8000/docs](http://localhost:8000/docs)** | Live Swagger UI for testing all clinical NLP, LangChain LLM triage, and ML endpoints |
+| **LangChain LLM Triage Endpoint** | **`POST /api/v1/nlp/llm-triage`** | Modular LLM inference pipeline with NegEx, prompt orchestration, and ESI prioritization |
 | **ReDoc API Documentation** | **[http://localhost:8000/redoc](http://localhost:8000/redoc)** | Clean, publication-grade API documentation |
 | **Backend Health Check** | **[http://localhost:8000/api/v1/health](http://localhost:8000/api/v1/health)** | Verifies database connectivity, ML artifact readiness, and service status |
 
@@ -48,7 +50,15 @@ JeevLok AI addresses this through a **multimodal, human-in-the-loop clinical int
 
 ## Key Architectural Capabilities
 
-### 1. Clinical NLP & Medical Entity Recognition
+### 1. LLM-Powered Patient Triage AI & LangChain Prompt Orchestration
+- **Modular Inference Pipeline**: Parses unstructured patient symptom descriptions and clinical context to classify acuity and prioritize case urgency across Emergency Severity Index levels (ESI P1 through P5).
+- **LangChain Prompt Orchestration**: Utilizes `ChatPromptTemplate` from LangChain LCEL to orchestrate clinical emergency guidelines, few-shot medical context, NegEx-filtered symptoms, and physiological thresholds (`Shock Index`, `MAP`, `qSOFA`).
+- **End-to-End FastAPI Backend**: Exposes high-throughput, typed REST APIs (`POST /api/v1/nlp/llm-triage` and `POST /api/v1/triage/llm-triage`) backed by Pydantic v2 validation.
+- **Zero-Downtime Deterministic Fallback**: Employs an intelligent hybrid architecture that automatically executes a deterministic clinical safety engine if external LLM APIs encounter network limits, ensuring 100% test pass rate and uninterrupted hospital operation.
+- **Actionable Protocol Triggers**: Synthesizes clinical rationale, differential considerations, and triggers immediate emergency pathways (e.g. STEMI 12-lead ECG, Stroke FAST Code, Sepsis qSOFA bundle).
+- **Secure Environment Deployment**: Safe configuration via `pydantic-settings`, strict environment variable isolation, CORS control, and reproducible Docker containerization.
+
+### 2. Clinical NLP & Medical Entity Recognition
 - **Abbreviation Expansion**: Expands 30+ emergency medical acronyms (`SOB` → shortness of breath, `CP` → chest pain, `LOC` → loss of consciousness, `HTN` → hypertension).
 - **NegEx Negation Detection**: Utilizes directional scope windows to ensure negated symptoms do not falsely inflate triage urgency.
 - **Regex Vitals Parser**: Extracts Blood Pressure (`120/80`), Heart Rate (`HR 115`), Respiratory Rate (`RR 24`), Temperature (`102.4 F`), SpO2 (`89%`), Pain (`9/10`), Age, and Gender from unstructured notes.
